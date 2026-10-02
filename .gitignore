@@ -26,3 +26,6 @@ node_modules
 # Tests
 test-results
 playwright-report
+
+# Reference screenshots for the design briefs: third-party content, kept local only
+design-prompts/refs/

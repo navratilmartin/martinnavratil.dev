@@ -11,7 +11,7 @@
 - **GitHub:** `navratilmartin/martinnavratil.dev` — public (decided Q4; created at scaffold time)
 - **Placeholder online since:** 2026-09-20 (Nuxt 4 + Nuxt UI 4, one page driven by `app/app.config.ts`)
 - **Planning started:** 2026-10-02
-- **Phase:** 🟡 **design** — scaffold and real content done; four Claude Design briefs written and adversarially reviewed (`design-prompts/`, see §2.1); waiting for Martin's pick of the brief(s) to run in Claude Design
+- **Phase:** 🟡 **design** — scaffold and real content done; briefs 01 and 02 ready to run in Claude Design (§2.1); next: Martin runs both, picks a prototype, design sync imports it into `design/`
 
 ## 0. Process (agreed 2026-10-02)
 
@@ -78,8 +78,17 @@ Files in `design-prompts/`; the full comparison, the grafts and the Claude Desig
 | `04-design-bento-proof.md` | Self-measuring hero: Lighthouse, CWV, bundle size, last commit as tiles | Silk behind Contact, lazy | 7 / 6 / 6 | L |
 
 Panel recommendation: run **02** first and graft 01's poster system, 03's warm soot/bone/amber palette and
-04's status bar into it. Claude's view: 01 is closest to Martin's references and the "breathtaking" goal,
-so run 01 and 02 as two Claude Design projects and compare prototypes before building. 🟡 Martin decides.
+04's status bar into it. ✅ **Martin's decision (2026-10-02): run 01 and 02 as two Claude Design projects and
+compare prototypes; the three grafts are folded into 02 first.** 02 is at revision 3: grafts applied,
+accessibility and coherence verifier findings fixed, all 35 contrast ratios recomputed and correct; it stays
+at ~4,450 words (soft target 4,000) because the extra words are exact values. Reference screenshots for the
+runs live in `design-prompts/refs/` (local only, third-party content, git-ignored).
+
+If 02 wins, implementation must also: set the motion state with an inline `<head>` script before first paint
+(`html[data-motion]`, the brief's CSS-only hero reveal depends on it; today `plugins/motion.client.ts` sets
+classes after hydration); generate `public/inspect.json` at build (per-component gzipped sizes); add
+Lighthouse CI + PageSpeed field data to the deploy job; render posters from `PosterSource.vue` with Playwright.
+Both briefs also ask Martin for `detail` copy (problem / decisions / outcome) for Kondor and Becky.
 
 ## 3. Decisions log
 
@@ -103,6 +112,9 @@ so run 01 and 02 as two Claude Design projects and compare prototypes before bui
 | 2026-10-02 | GitHub Actions for checks + deploy (Q13) | One pipeline; deploy only when checks pass; runners have Chrome for the PDF |
 | 2026-10-02 | English + Czech via `@nuxtjs/i18n` (Q14) | Martin wants Czech HR and local readers covered; data model is bilingual from day one |
 | 2026-10-02 | Dark-first with a light mode (Q15) | Martin's choice; effects' native habitat; uniqueness must come from type, the hero stack and one signature interaction |
+| 2026-10-02 | Featured = Nambi, Kondor + SkautSim, Becky; Nambi shown in full; study app reframed (Q16) | Martin's choice; the interview framing stays off the site |
+| 2026-10-02 | Photo yes (placeholder), remote only, hello@ alias, LinkedIn, no availability line, "senior" in the headline (Q17) | Martin's answers |
+| 2026-10-02 | Run briefs 01 and 02 in Claude Design, compare prototypes; grafts into 02 first | Settles the motion question with two cheap runs instead of a bet |
 
 ## 4. Open questions — rest of the interview (recommended answers in bold)
 
@@ -353,6 +365,7 @@ the OG template · `app/composables/useMotionPreference.ts` + `app/plugins/motio
 
 - 2026-10-02 — Interview started (Q1–Q3 decided). Two research passes completed (§5). Martin shared two
   hero references (§2) and set the process order (§0). This file created.
+- 2026-10-02 — Brief 02 revised with the grafts and verified (§2.1). Ready to run 01 and 02 in Claude Design.
 - 2026-10-02 — Four design briefs written, critiqued and ranked (§2.1, `design-prompts/`).
 - 2026-10-02 — Q16–Q17 answered from the CV and Martin's notes; content, photo placeholder and Email
   Routing applied (see Q16/Q17 rows and §8).

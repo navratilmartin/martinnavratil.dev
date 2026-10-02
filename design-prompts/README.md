@@ -11,6 +11,8 @@ Four revised briefs for Claude Design, all bound by the hard constraints in PROJ
 | 03 Maximal dark | One breath: name, silk, live dots and portrait frame share a 6 s `--breath` clock | Silk behind hero, desktop pointer only | Silk, Breathing Text, Variable Letter Text, Text Hover Effect, Floating Card, Fey Cards, Scroll Island, Design Testimonials (rebuilt) | 6 / 6 / 6 (5 / 5 / 6) | Eight rebuilt effects, shader pixel tests, lowest scores | L |
 | 04 Bento proof | Self-measuring hero: Lighthouse, CWV, bundle size and last commit as tiles; same-size tiles swap, order remembered | Silk behind Contact, lazy | Scroll Island, Variable Text, Safari + iPhone Mockup, Silk, Blur Reveal | 7 / 6 / 6 (5 / 5 / 4) | CI + Worker pipeline before the hero is truthful; bento = 2026 default | L |
 
+**Update, 2026-10-02:** 02 is now at revision 3. The three grafts below are applied: posters from 01, the warm palette from 03, and the status-bar proof from 04. Two verifiers reviewed it (accessibility, design coherence) and their findings are folded in. All 35 stated contrast ratios were recomputed independently and match. The table row above still describes 02 before the grafts. Martin runs **01 and 02** in Claude Design and compares the prototypes.
+
 ## 2. Ranking and recommendation
 
 1. **02 Quiet signature — send first.** Highest, most even scores, zero WebGL and zero Inspira runtime, so nothing can break the budget or catalog rule, and its signature is item 1 of PROJECT.md §5.7. Cheapest to build; a hiring engineer reads it as craft, not effects.
@@ -27,7 +29,7 @@ Four revised briefs for Claude Design, all bound by the hard constraints in PROJ
 ## 3. How to run it in Claude Design
 
 1. New Claude Design project, named after the variant.
-2. Attach `public/images/portrait-placeholder.webp` (real photo later) and the two hero references: `1.jpg` (rachelchen.tech: serif identity sentence, italic twist word, experience table) and `2.jpg` (sandwich hero: big name / fanned work images / big role line).
+2. Attach `public/images/portrait-placeholder.webp` (real photo later) and the two hero references from `design-prompts/refs/` (local only, not in git): `ref-1-rachelchen-identity-line.jpg` (rachelchen.tech: serif identity sentence, italic twist word, experience table) and `ref-2-sandwich-hero.jpg` (sandwich hero: big name / fanned work images / big role line).
 3. Paste the whole brief as the first message, plus: "Build the animations into the prototype, do not only describe them."
 4. Ask for exactly the frames in its **Deliverables** section, in order; request missing ones singly.
 5. Fix contrast and Czech overflow inside Claude Design first; cheaper there.
