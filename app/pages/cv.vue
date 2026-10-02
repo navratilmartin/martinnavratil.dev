@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { profile } from '~/data/profile'
-import { experience } from '~/data/experience'
+import { experience, volunteering } from '~/data/experience'
+import { education, skills } from '~/data/education'
 import { projects } from '~/data/projects'
 import { links } from '~/data/links'
 
@@ -12,7 +13,8 @@ const localePath = useLocalePath()
 const pdf = computed(() => locale.value === 'cs' ? '/martin-navratil-cv-cs.pdf' : '/martin-navratil-cv.pdf')
 const featured = projects.filter(project => project.featured)
 
-function year(month: string) {
+function year(month?: string) {
+  if (!month) return ''
   return month === 'present' ? t('experience.present') : month.slice(0, 4)
 }
 
@@ -56,40 +58,52 @@ defineOgImageComponent('Default', {
         </div>
       </nav>
 
-      <header class="border-b border-default pb-6">
-        <h1 class="text-3xl font-bold tracking-tight text-highlighted">
-          {{ profile.name }}
-        </h1>
-        <p class="mt-1 text-lg text-muted">
-          {{ l(profile.headline) }}
-        </p>
-        <p class="mt-4 text-sm text-muted">
-          {{ l(profile.intro) }}
-        </p>
-        <ul class="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-sm">
-          <li>{{ l(profile.location) }}</li>
-          <li>
-            <a
-              :href="`mailto:${profile.email}`"
-              class="text-highlighted underline underline-offset-2"
-            >{{ profile.email }}</a>
-          </li>
-          <li
-            v-for="link in links"
-            :key="link.to"
-          >
-            <a
-              :href="link.to"
-              class="text-highlighted underline underline-offset-2"
-            >{{ link.to.replace(/^https?:\/\//, '') }}</a>
-          </li>
-          <li>
-            <a
-              href="https://martinnavratil.dev"
-              class="text-highlighted underline underline-offset-2"
-            >martinnavratil.dev</a>
-          </li>
-        </ul>
+      <header class="flex items-start gap-6 border-b border-default pb-6">
+        <NuxtImg
+          v-if="profile.photo"
+          :src="profile.photo"
+          :alt="t('cv.photoAlt')"
+          width="112"
+          height="112"
+          fit="cover"
+          sizes="112px"
+          class="size-24 shrink-0 rounded-full object-cover sm:size-28"
+        />
+        <div>
+          <h1 class="text-3xl font-bold tracking-tight text-highlighted">
+            {{ profile.name }}
+          </h1>
+          <p class="mt-1 text-lg text-muted">
+            {{ l(profile.headline) }}
+          </p>
+          <p class="mt-4 text-sm text-muted">
+            {{ l(profile.intro) }}
+          </p>
+          <ul class="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-sm">
+            <li>{{ l(profile.location) }}</li>
+            <li>
+              <a
+                :href="`mailto:${profile.email}`"
+                class="text-highlighted underline underline-offset-2"
+              >{{ profile.email }}</a>
+            </li>
+            <li
+              v-for="link in links"
+              :key="link.to"
+            >
+              <a
+                :href="link.to"
+                class="text-highlighted underline underline-offset-2"
+              >{{ link.label === 'LinkedIn' ? 'linkedin.com/in/martin-navrátil' : link.to.replace(/^https?:\/\//, '') }}</a>
+            </li>
+            <li>
+              <a
+                href="https://martinnavratil.dev"
+                class="text-highlighted underline underline-offset-2"
+              >martinnavratil.dev</a>
+            </li>
+          </ul>
+        </div>
       </header>
 
       <section class="mt-8">
@@ -106,6 +120,10 @@ defineOgImageComponent('Default', {
             <div>
               <p class="font-medium text-highlighted">
                 {{ l(entry.role) }} · {{ entry.company }}
+                <span
+                  v-if="entry.location"
+                  class="font-normal text-muted"
+                > · {{ entry.location }}</span>
               </p>
               <p
                 v-if="entry.summary"
@@ -137,6 +155,73 @@ defineOgImageComponent('Default', {
 
       <section class="mt-8">
         <h2 class="text-xs font-semibold uppercase tracking-widest text-muted">
+          {{ t('cv.skills') }}
+        </h2>
+        <dl class="mt-4 grid gap-2 text-sm sm:grid-cols-[12rem_1fr]">
+          <template
+            v-for="group in skills"
+            :key="group.label.en"
+          >
+            <dt class="text-muted">
+              {{ l(group.label) }}
+            </dt>
+            <dd class="text-highlighted">
+              {{ group.items.join(' · ') }}
+            </dd>
+          </template>
+        </dl>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-muted">
+          {{ t('cv.education') }}
+        </h2>
+        <ul class="mt-4 space-y-4">
+          <li
+            v-for="entry in education"
+            :key="entry.school"
+          >
+            <p class="font-medium text-highlighted">
+              {{ l(entry.degree) }}, {{ l(entry.field) }} · {{ entry.school }}
+              <span
+                v-if="entry.location"
+                class="font-normal text-muted"
+              > · {{ entry.location }}</span>
+            </p>
+            <p
+              v-if="entry.note"
+              class="mt-1 text-sm text-muted"
+            >
+              {{ l(entry.note) }}
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-muted">
+          {{ t('cv.leadership') }}
+        </h2>
+        <ul class="mt-4 space-y-4">
+          <li
+            v-for="entry in volunteering"
+            :key="entry.company"
+          >
+            <p class="font-medium text-highlighted">
+              {{ l(entry.role) }} · {{ entry.company }}
+            </p>
+            <p
+              v-if="entry.summary"
+              class="mt-1 text-sm text-muted"
+            >
+              {{ l(entry.summary) }}
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-muted">
           {{ t('cv.selectedProjects') }}
         </h2>
         <ul class="mt-4 space-y-5">
@@ -157,7 +242,7 @@ defineOgImageComponent('Default', {
                 · <a
                   :href="project.links.live"
                   class="text-highlighted underline underline-offset-2"
-                >{{ project.links.live.replace(/^https?:\/\//, '') }}</a>
+                >{{ project.links.live.replace(/^https?:\/\//, '').replace(/\/$/, '') }}</a>
               </template>
             </p>
           </li>

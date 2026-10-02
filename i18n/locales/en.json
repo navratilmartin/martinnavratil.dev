@@ -43,7 +43,11 @@
     "download": "Download PDF",
     "back": "Back to the site",
     "selectedProjects": "Selected projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "education": "Education",
+    "skills": "Skills",
+    "leadership": "Leadership",
+    "photoAlt": "Portrait of Martin Navrátil"
   },
   "settings": {
     "language": "Language",

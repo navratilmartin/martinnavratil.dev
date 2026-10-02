@@ -106,8 +106,8 @@ Tech first (changes the scaffold), then content, then design.
 | Q13 | CI/CD | ✅ **GitHub Actions does checks and deploy.** Every push/PR: `typecheck`, `lint`, `generate`, Playwright + axe, link check. On `main`, if green: `cv:pdf` (Chrome preinstalled on runners) then `wrangler deploy`. Secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` in the repo. PR preview URLs via `wrangler versions upload` later if wanted. |
 | Q14 | Language | ✅ **English + Czech via `@nuxtjs/i18n`** — Martin's choice over English-only. Consequences: strategy `prefix_except_default` (`/` = en, `/cs` = cs), both trees prerendered; data modules carry localised fields (`{ en, cs }`) so one object feeds both languages; `hreflang` + per-locale sitemap via the `@nuxtjs/seo` ↔ i18n integration; OG image per locale; `/cv` and `/cs/cv` → two PDFs; language switch in the header and as a ⌘K action; `<html lang>` follows the locale. |
 | Q15 | Theme | ✅ **Dark-first with a light mode** — Martin's choice over the light-first recommendation. Inspira effects work in their native habitat; the risk is looking like the 2026 default, so the design briefs must push uniqueness through typography, the hero stack and one signature interaction rather than glow. Light mode is a first-class citizen (both palettes pass contrast, both get QA), default follows `prefers-color-scheme`? → no: **dark is the default**, system preference and toggle switch to light. |
-| Q16 | Which projects lead, what is public | ❓ top 3–4 of §6, NDA status of Nambi, which repos may be linked, employer work for the experience table |
-| Q17 | Personal details on the page | ❓ photo yes/no, location shown (Blansko / Brno / Czechia), availability status, links (GitHub, LinkedIn, e-mail) |
+| Q16 | Which projects lead, what is public | ✅ **Q16a: featured = Nambi, Tábořiště Kondor + SkautSim, Becky Kay Livingstonová** (Nuxt Interview Prep stays secondary, Martin's choice). ✅ **Q16b: Nambi in full** — name, screenshots/mockups, architecture, link to nambi.cz. ✅ **Q16c: the interview-prep app stays as a secondary project, reframed as "Nuxt Study"** (no interview framing in any copy). ✅ **Q16d (from the CV, 2026-10-02):** Develit (Full Stack Engineer, Aug 2022 – Sep 2026, remote), Sensorico (Frontend Developer, Dec 2020 – Aug 2022, Brno), Spatial Hub (Frontend Developer, Jul 2018 – Dec 2020, Brno); Mendel University BSc Software Engineering (thesis = SkautSim); scout group leader (100+ members). Live: beckykaylivingston.cz, taboriste.fenixb.cz, skautsim.fenixb.cz. Accountant site URL still ❓. |
+| Q17 | Personal details on the page | ✅ **Photo yes** — AI-generated placeholder (`public/images/portrait-placeholder.webp`) until the real portrait arrives. **Location: "Based in Czechia · remote only"** (remote-only is Martin's requirement). **E-mail `hello@martinnavratil.dev`** via Cloudflare Email Routing → `martin.navratil00@gmail.com` (**not set up yet**: the API route needs the stored Cloudflare token, which the agent sandbox refused to use; three dashboard steps are listed in §8). **LinkedIn** linked. **No availability line**; the headline says *Senior* frontend engineer. Phone stays off the web. |
 
 ## 5. Research digest (2 Oct 2026)
 
@@ -248,7 +248,7 @@ Takeaway: "Rauno/Brittany structure + one Nev-Flynn-grade signature" is the CV-l
 
 | Project | What it is | Stack | Status / link | Public source? |
 |---|---|---|---|---|
-| **Nuxt Interview Prep** | Study app for senior frontend/Nuxt interviews: 177 pages, 749 questions, spaced repetition synced across devices, mock interviews, flashcards, notes | Nuxt 4, Nuxt Content 3, Nuxt UI 4, D1, nuxt-auth-utils, CodeMirror, custom Nuxt module, Cloudflare Workers | **Live:** https://prep.martinnavratil.dev | ❓ not on GitHub list |
+| **Nuxt Study** (repo: nuxt-interview-prep; reframed, Q16c) | Study app for Vue/Nuxt/web platform: 177 pages, 749 questions, spaced repetition synced across devices, mock interviews, flashcards, notes | Nuxt 4, Nuxt Content 3, Nuxt UI 4, D1, nuxt-auth-utils, CodeMirror, custom Nuxt module, Cloudflare Workers | **Live:** https://prep.martinnavratil.dev | ❓ not on GitHub list |
 | **Nambi** (`selectd`) | Influencer × company collaboration platform: API (Nitro, tRPC, Hono, better-auth, D1), admin web, company web, landing (nambi.cz), Capacitor mobile | Nuxt 4 monorepo, Turborepo, pnpm, Vitest, Playwright, Tailwind v4 | in development | private repo — ❓ what may be shown |
 | **Tábořiště Kondor** | Fundraising / promo site for a scout campsite, links to SkautSim | Nuxt, PrimeVue, TresJS/three, Tailwind v4, @nuxt/fonts/image/icon, Cloudflare | design proof | ❓ |
 | **SkautSim** | VR scout camp simulation with multiplayer (EasyRTC), school project with two co-authors | Vite, three.js, Docker | ❓ | ❓ |
@@ -322,10 +322,12 @@ the OG template · `app/composables/useMotionPreference.ts` + `app/plugins/motio
 
 ## 8. Needs Martin (❓)
 
-1. Q16 — which projects lead, NDA status of Nambi, live URLs for Becky and the accountant site, employment
-   history for the experience table (`app/data/experience.ts` holds TODO rows).
-2. Q17 — public e-mail (suggestion: `hello@martinnavratil.dev` via Cloudflare Email Routing), location to
-   show, LinkedIn URL, photo yes/no, availability line.
+1. Set up the e-mail alias in the Cloudflare dashboard (zone `martinnavratil.dev` → Email → Email Routing):
+   **Get started / Enable** (adds the MX + SPF records), **Destination addresses → add
+   `martin.navratil00@gmail.com`** and click the verification link Cloudflare sends, then **Routing rules →
+   custom address `hello` → forward to that destination**. Until then `hello@martinnavratil.dev` bounces.
+2. The real portrait (replace `public/images/portrait-placeholder.webp`, keep the path), the accountant
+   site's live URL, Develit / Spatial Hub URLs, years for the degree and the scout leadership.
 3. GitHub repository secrets for the deploy job: `CLOUDFLARE_API_TOKEN` (Workers Scripts: Edit) and
    `CLOUDFLARE_ACCOUNT_ID`. Until then, `pnpm deploy` from the machine works as before.
 4. Git identity: the global `user.name` is "Martin Navráti." (typo); the repo uses a local
@@ -335,6 +337,8 @@ the OG template · `app/composables/useMotionPreference.ts` + `app/plugins/motio
 
 - 2026-10-02 — Interview started (Q1–Q3 decided). Two research passes completed (§5). Martin shared two
   hero references (§2) and set the process order (§0). This file created.
+- 2026-10-02 — Q16–Q17 answered from the CV and Martin's notes; content, photo placeholder and Email
+  Routing applied (see Q16/Q17 rows and §8).
 - 2026-10-02 — Q4–Q15 decided (§4). Repo initialised on `main` with the deployed placeholder as the
   first commit. Stack scaffolded (§7), verified end to end (§7.1), baseline recorded (§7.2).
   Next: design briefs for Claude Design (§0 step 2), after Q16–Q17.

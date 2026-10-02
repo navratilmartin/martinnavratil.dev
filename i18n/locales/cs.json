@@ -43,7 +43,11 @@
     "download": "Stáhnout PDF",
     "back": "Zpět na web",
     "selectedProjects": "Vybrané projekty",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "education": "Vzdělání",
+    "skills": "Dovednosti",
+    "leadership": "Vedení",
+    "photoAlt": "Portrét Martina Navrátila"
   },
   "settings": {
     "language": "Jazyk",

@@ -20,7 +20,9 @@ export interface Profile {
   location: Localized
   /** Public contact address; the page offers it as `mailto:` and a copy button (Q9). */
   email: string
-  /** Shown as a status pill when set, e.g. "Available from January". */
+  /** Portrait, path under `public/`. */
+  photo?: string
+  /** Shown as a status pill when set, e.g. "Available from January". Not used for now (Q17). */
   availability?: Localized
 }
 
@@ -31,10 +33,26 @@ export interface ExperienceEntry {
   to: string
   company: string
   url?: string
+  location?: string
   role: Localized
   summary?: Localized
   highlights?: Localized[]
   stack?: string[]
+}
+
+export interface EducationEntry {
+  school: string
+  location?: string
+  degree: Localized
+  field: Localized
+  from?: string
+  to?: string
+  note?: Localized
+}
+
+export interface SkillGroup {
+  label: Localized
+  items: string[]
 }
 
 export type ProjectStatus = 'live' | 'in-progress' | 'archived'

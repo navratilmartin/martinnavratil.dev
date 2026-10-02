@@ -59,6 +59,12 @@ function year(month: string) {
           <template v-else>
             {{ entry.company }}
           </template>
+          <span
+            v-if="entry.location"
+            class="block text-xs text-muted"
+          >
+            {{ entry.location }}
+          </span>
         </td>
         <td class="py-3">
           {{ l(entry.role) }}

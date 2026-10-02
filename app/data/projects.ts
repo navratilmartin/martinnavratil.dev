@@ -1,18 +1,19 @@
 import type { Project } from '#shared/types/content'
 
-// Ordered by importance; `featured` entries lead (PROJECT.md §6, selection pending Q16).
-// TODO(Martin, Q16): confirm roles, team sizes, what may be public and the missing live URLs.
+// Ordered by importance; `featured` entries lead (PROJECT.md Q16a, 2026-10-02): Nambi, Tábořiště Kondor
+// + SkautSim, Becky Kay Livingstonová. The study app is deliberately secondary.
 export const projects: Project[] = [
   {
-    slug: 'nuxt-interview-prep',
-    name: 'Nuxt Interview Prep',
+    // Reframed on purpose (PROJECT.md Q16c): the app is presented as a study tool, not as interview prep.
+    slug: 'nuxt-study',
+    name: 'Nuxt Study',
     tagline: {
-      en: 'A study app for senior frontend and Nuxt interviews',
-      cs: 'Studijní aplikace pro pohovory na senior frontend a Nuxt pozice',
+      en: 'A spaced-repetition study app for Vue, Nuxt and the web platform',
+      cs: 'Studijní aplikace s opakováním podle Leitnera pro Vue, Nuxt a webovou platformu',
     },
     summary: {
-      en: '177 study pages in seven tracks, 749 questions with spaced repetition synced across devices, timed mock interviews, flashcards extracted from the content at build time, notes and progress stats.',
-      cs: '177 studijních stránek v sedmi tracích, 749 otázek s opakováním synchronizovaným mezi zařízeními, mock pohovory na čas, kartičky generované z obsahu při buildu, poznámky a statistiky pokroku.',
+      en: '177 study pages in seven tracks, 749 questions with spaced repetition synced across devices, timed quiz runs with model answers, flashcards extracted from the content at build time, notes and progress stats.',
+      cs: '177 studijních stránek v sedmi tracích, 749 otázek s opakováním synchronizovaným mezi zařízeními, kvízy na čas s modelovými odpověďmi, kartičky generované z obsahu při buildu, poznámky a statistiky pokroku.',
     },
     role: {
       en: 'Solo: content model, custom Nuxt module, progress sync on D1, UI',
@@ -22,11 +23,11 @@ export const projects: Project[] = [
     status: 'live',
     stack: ['Nuxt 4', 'Nuxt Content 3', 'Nuxt UI 4', 'Cloudflare Workers', 'D1', 'nuxt-auth-utils', 'CodeMirror'],
     links: { live: 'https://prep.martinnavratil.dev' },
-    featured: true,
+    featured: false,
     detail: {
       problem: {
-        en: 'Preparing for senior Nuxt interviews meant juggling docs, notes and question lists with no feedback loop on what I actually knew.',
-        cs: 'Příprava na senior Nuxt pohovory znamenala žonglovat s dokumentací, poznámkami a seznamy otázek bez zpětné vazby o tom, co opravdu umím.',
+        en: 'Keeping Vue, Nuxt and web-platform knowledge sharp meant juggling docs, notes and question lists with no feedback loop on what I actually retained.',
+        cs: 'Udržet si znalosti Vue, Nuxtu a webové platformy znamenalo žonglovat s dokumentací, poznámkami a seznamy otázek bez zpětné vazby o tom, co si opravdu pamatuju.',
       },
       decisions: [
         {
@@ -43,8 +44,8 @@ export const projects: Project[] = [
         },
       ],
       outcome: {
-        en: 'Live at prep.martinnavratil.dev: 749 questions, 157 glossary terms, a 56-item readiness checklist and a 21-day plan.',
-        cs: 'Běží na prep.martinnavratil.dev: 749 otázek, 157 pojmů ve slovníku, 56bodový checklist připravenosti a 21denní plán.',
+        en: 'Live at prep.martinnavratil.dev: 749 questions, 157 glossary terms and a 21-day study plan.',
+        cs: 'Běží na prep.martinnavratil.dev: 749 otázek, 157 pojmů ve slovníku a 21denní studijní plán.',
       },
     },
   },
@@ -52,8 +53,8 @@ export const projects: Project[] = [
     slug: 'nambi',
     name: 'Nambi',
     tagline: {
-      en: 'A platform where companies and influencers run collaborations end to end',
-      cs: 'Platforma, kde firmy a influenceři řeší spolupráce od nabídky po hodnocení',
+      en: 'A barter marketplace where influencers exchange content for local-business experiences',
+      cs: 'Barterové tržiště, kde influenceři mění obsah za zážitky u lokálních firem',
     },
     summary: {
       en: 'Monorepo with a tRPC API on Nitro, admin and company web apps, a marketing landing and a Capacitor mobile app. Offers, applications, term proposals, deliverables, ratings and chat in one flow.',
@@ -66,8 +67,7 @@ export const projects: Project[] = [
     year: 2026,
     status: 'in-progress',
     stack: ['Nuxt 4', 'Turborepo', 'tRPC', 'Hono', 'better-auth', 'Cloudflare D1', 'Capacitor', 'Vitest', 'Playwright'],
-    // TODO(Martin): confirm nambi.cz is public before linking it.
-    links: {},
+    links: { live: 'https://nambi.cz' },
     featured: true,
     detail: {
       problem: {
@@ -110,9 +110,9 @@ export const projects: Project[] = [
       cs: 'Design systém, web, integrace 3D',
     },
     year: 2026,
-    status: 'in-progress',
+    status: 'live',
     stack: ['Nuxt 4', 'PrimeVue', 'TresJS', 'three.js', 'Tailwind v4', 'Cloudflare Workers'],
-    links: {},
+    links: { live: 'https://taboriste.fenixb.cz' },
     featured: true,
   },
   {
@@ -131,10 +131,9 @@ export const projects: Project[] = [
       cs: 'Designový směr s Claude Design, implementace, audit přístupnosti',
     },
     year: 2026,
-    status: 'in-progress',
+    status: 'live',
     stack: ['Astro 7', 'Tailwind v4', 'GSAP', 'Lenis', 'Cloudflare Workers', 'Playwright', 'axe-core'],
-    // TODO(Martin): add https://beckykaylivingston.cz once it is live.
-    links: {},
+    links: { live: 'https://beckykaylivingston.cz' },
     featured: true,
   },
   {
@@ -182,18 +181,18 @@ export const projects: Project[] = [
       cs: 'VR simulace skautského tábora s multiplayerem',
     },
     summary: {
-      en: 'University project with two co-authors: walk through the planned campsite in VR, meet others in the same scene over WebRTC and send photos from the game to the campsite website.',
-      cs: 'Školní projekt se dvěma spoluautory: procházka plánovaným tábořištěm ve VR, setkání s ostatními ve stejné scéně přes WebRTC a odesílání fotek ze hry na web tábořiště.',
+      en: 'Bachelor\'s thesis project with two co-authors: walk through the planned campsite in VR, meet others in the same scene over WebRTC and send photos from the game to the campsite website.',
+      cs: 'Bakalářský projekt se dvěma spoluautory: procházka plánovaným tábořištěm ve VR, setkání s ostatními ve stejné scéně přes WebRTC a odesílání fotek ze hry na web tábořiště.',
     },
     role: {
       en: 'One of three authors: multiplayer and the bridge to the website',
       cs: 'Jeden ze tří autorů: multiplayer a propojení s webem',
     },
     year: 2026,
-    status: 'in-progress',
+    status: 'live',
     stack: ['three.js', 'Vite', 'WebRTC', 'Docker'],
-    links: {},
-    featured: false,
+    links: { live: 'https://skautsim.fenixb.cz/' },
+    featured: true,
   },
   {
     slug: 'robopilot',

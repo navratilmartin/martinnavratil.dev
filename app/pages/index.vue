@@ -29,7 +29,8 @@ useSchemaOrg([
     name: profile.name,
     url: 'https://martinnavratil.dev',
     email: profile.email,
-    jobTitle: 'Frontend engineer',
+    jobTitle: 'Senior Frontend Engineer',
+    image: profile.photo ? `https://martinnavratil.dev${profile.photo}` : undefined,
     sameAs: links.map(link => link.to),
   }),
 ])
@@ -42,6 +43,18 @@ useSchemaOrg([
     <main id="main">
       <section class="py-24 sm:py-32">
         <UContainer class="max-w-4xl">
+          <NuxtImg
+            v-if="profile.photo"
+            :src="profile.photo"
+            :alt="t('cv.photoAlt')"
+            width="160"
+            height="160"
+            fit="cover"
+            sizes="160px"
+            loading="eager"
+            fetchpriority="high"
+            class="mb-8 size-28 rounded-full object-cover sm:size-36"
+          />
           <h1 class="text-5xl font-bold tracking-tight text-highlighted sm:text-7xl">
             {{ profile.name }}
           </h1>
