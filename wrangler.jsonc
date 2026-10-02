@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Assets-only Worker: no script, Cloudflare serves the generated files from `.output/public`.
+  "name": "martinnavratil-dev",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./.output/public",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    // Custom domains: Cloudflare creates the DNS records and certificates on deploy.
+    { "pattern": "martinnavratil.dev", "custom_domain": true },
+    { "pattern": "www.martinnavratil.dev", "custom_domain": true }
+  ]
+}
