@@ -11,7 +11,7 @@
 - **GitHub:** `navratilmartin/martinnavratil.dev` — public (decided Q4; created at scaffold time)
 - **Placeholder online since:** 2026-09-20 (Nuxt 4 + Nuxt UI 4, one page driven by `app/app.config.ts`)
 - **Planning started:** 2026-10-02
-- **Phase:** 🟢 **scaffold done** — stack set up and verified (typecheck, lint, build, PDF, 18/18 e2e); content questions Q16–Q17 open; design briefs next
+- **Phase:** 🟡 **design** — scaffold and real content done; four Claude Design briefs written and adversarially reviewed (`design-prompts/`, see §2.1); waiting for Martin's pick of the brief(s) to run in Claude Design
 
 ## 0. Process (agreed 2026-10-02)
 
@@ -64,6 +64,22 @@ fan; reduced motion: static) → identity sentence with the italic twist ("a fro
 *ships*" — final copy TBD) → stack line. Immediately below: Ref A's experience table as its own strip.
 Light-first editorial base like both references, which is rarer in 2026 than the default dark-glow look
 and makes restrained Inspira effects stand out. Final call in the design-brief phase (variants).
+
+### 2.1 Design briefs (2026-10-02, written by a 21-agent workflow: 4 authors → 3 adversarial critiques each → revision → synthesis)
+
+Files in `design-prompts/`; the full comparison, the grafts and the Claude Design run checklist are in
+`design-prompts/README.md`. Scores are recruiter / a11y+perf / design director out of 10.
+
+| Brief | Signature | WebGL | Scores | Effort |
+|---|---|---|---|---|
+| `01-design-hybrid-hero.md` | The deck: fanned project posters you tilt, drag and reorder; deals itself out on scroll, order persisted | none | 7 / 6 / 6 | L |
+| `02-design-quiet-signature.md` | Inspect mode: the page annotates its own components with real gzipped costs and "why" notes, keyboard-walkable | none | 7 / 7 / 7 | M |
+| `03-design-maximal-dark.md` | One shared 6 s "breath" clock: name, silk shader, live dots, portrait frame | Silk behind the hero, desktop pointer only | 6 / 6 / 6 | L |
+| `04-design-bento-proof.md` | Self-measuring hero: Lighthouse, CWV, bundle size, last commit as tiles | Silk behind Contact, lazy | 7 / 6 / 6 | L |
+
+Panel recommendation: run **02** first and graft 01's poster system, 03's warm soot/bone/amber palette and
+04's status bar into it. Claude's view: 01 is closest to Martin's references and the "breathtaking" goal,
+so run 01 and 02 as two Claude Design projects and compare prototypes before building. 🟡 Martin decides.
 
 ## 3. Decisions log
 
@@ -337,6 +353,7 @@ the OG template · `app/composables/useMotionPreference.ts` + `app/plugins/motio
 
 - 2026-10-02 — Interview started (Q1–Q3 decided). Two research passes completed (§5). Martin shared two
   hero references (§2) and set the process order (§0). This file created.
+- 2026-10-02 — Four design briefs written, critiqued and ranked (§2.1, `design-prompts/`).
 - 2026-10-02 — Q16–Q17 answered from the CV and Martin's notes; content, photo placeholder and Email
   Routing applied (see Q16/Q17 rows and §8).
 - 2026-10-02 — Q4–Q15 decided (§4). Repo initialised on `main` with the deployed placeholder as the
