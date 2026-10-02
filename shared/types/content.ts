@@ -1,0 +1,71 @@
+/**
+ * Content model of the site. Everything the page, the CV route and the OG image show comes from
+ * `app/data/*.ts`, typed with these interfaces (PROJECT.md Q8). Copy is bilingual (Q14): every
+ * human-readable string is a `Localized` pair, so one object feeds both languages.
+ */
+
+export interface Localized {
+  en: string
+  cs: string
+}
+
+export type Locale = keyof Localized
+
+export interface Profile {
+  name: string
+  /** One-line positioning under the name (Q2). */
+  headline: Localized
+  /** The identity sentence of the hero. */
+  intro: Localized
+  location: Localized
+  /** Public contact address; the page offers it as `mailto:` and a copy button (Q9). */
+  email: string
+  /** Shown as a status pill when set, e.g. "Available from January". */
+  availability?: Localized
+}
+
+export interface ExperienceEntry {
+  /** ISO month, e.g. `2024-09`. */
+  from: string
+  /** ISO month or `present`. */
+  to: string
+  company: string
+  url?: string
+  role: Localized
+  summary?: Localized
+  highlights?: Localized[]
+  stack?: string[]
+}
+
+export type ProjectStatus = 'live' | 'in-progress' | 'archived'
+
+export interface Project {
+  slug: string
+  name: string
+  tagline: Localized
+  summary: Localized
+  /** What Martin owned, the first thing hiring engineers check. */
+  role: Localized
+  year: number
+  status: ProjectStatus
+  stack: string[]
+  links: {
+    live?: string
+    source?: string
+  }
+  /** Featured projects form the hero stack and the first row of Work. */
+  featured: boolean
+  /** Senior-level depth for the in-page detail panel (single page, Q3). */
+  detail?: {
+    problem: Localized
+    decisions: Localized[]
+    outcome: Localized
+  }
+}
+
+export interface SocialLink {
+  label: string
+  /** Iconify name, e.g. `i-simple-icons-github`. */
+  icon: string
+  to: string
+}

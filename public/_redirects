@@ -1,0 +1,3 @@
+# Cloudflare static assets: the sitemap module splits the sitemap per language and answers
+# /sitemap.xml with a redirect; serve that as a real 301 instead of the prerendered meta-refresh page.
+/sitemap.xml /sitemap_index.xml 301

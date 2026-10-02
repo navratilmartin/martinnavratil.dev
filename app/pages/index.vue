@@ -1,108 +1,122 @@
 <script setup lang="ts">
-const { profile, projects, links } = useAppConfig()
-const year = new Date().getFullYear()
+import { profile } from '~/data/profile'
+import { projects } from '~/data/projects'
+import { experience } from '~/data/experience'
+import { links } from '~/data/links'
+
+// Scaffold of the single page (PROJECT.md Q3): the sections and data flow are final, the visual
+// layer is a placeholder until the design phase.
+const { t } = useI18n()
+const l = useLocalized()
+
+const featured = projects.filter(project => project.featured)
+const more = projects.filter(project => !project.featured)
+
+// The home title carries the positioning line itself, so the site-name suffix is switched off here.
+useHead({ titleTemplate: '%s' })
+useSeoMeta({
+  title: () => `${profile.name} · ${l(profile.headline)}`,
+  description: () => l(profile.intro),
+})
+
+defineOgImageComponent('Default', {
+  title: profile.name,
+  description: l(profile.headline),
+})
+
+useSchemaOrg([
+  definePerson({
+    name: profile.name,
+    url: 'https://martinnavratil.dev',
+    email: profile.email,
+    jobTitle: 'Frontend engineer',
+    sameAs: links.map(link => link.to),
+  }),
+])
 </script>
 
 <template>
   <div class="min-h-screen bg-default text-default">
-    <UContainer class="max-w-3xl py-16 sm:py-24">
-      <header class="flex items-start justify-between gap-6">
-        <div class="space-y-4">
-          <h1 class="text-4xl font-bold tracking-tight text-highlighted sm:text-5xl">
+    <SiteHeader />
+
+    <main id="main">
+      <section class="py-24 sm:py-32">
+        <UContainer class="max-w-4xl">
+          <h1 class="text-5xl font-bold tracking-tight text-highlighted sm:text-7xl">
             {{ profile.name }}
           </h1>
-          <p class="text-lg text-muted sm:text-xl">
-            {{ profile.tagline }}
+          <p class="mt-6 text-xl text-muted sm:text-2xl">
+            {{ l(profile.headline) }}
           </p>
-          <p
-            v-if="profile.note"
-            class="max-w-xl text-sm text-dimmed"
+          <!-- First Inspira UI component through the registry CLI; proves the pipeline (PROJECT.md §5.4). -->
+          <BlurReveal
+            :delay="0.2"
+            :duration="0.8"
+            class="mt-4"
           >
-            {{ profile.note }}
-          </p>
-        </div>
-        <UColorModeButton class="shrink-0" />
-      </header>
-
-      <section class="mt-16 space-y-6">
-        <h2 class="text-xs font-semibold uppercase tracking-widest text-muted">
-          Projects
-        </h2>
-
-        <UPageGrid class="grid-cols-1 sm:grid-cols-2">
-          <UPageCard
-            v-for="project in projects"
-            :key="project.name"
-            :title="project.name"
-            :description="project.description"
-            :icon="project.icon"
-            :to="project.url"
-            :target="project.url ? '_blank' : undefined"
-            variant="subtle"
-            :highlight="!!project.url"
-            :ui="{ description: 'text-sm leading-relaxed' }"
-          >
-            <template #footer>
-              <div class="flex flex-wrap items-center gap-1.5">
-                <UBadge
-                  v-for="tag in project.tags"
-                  :key="tag"
-                  color="neutral"
-                  variant="subtle"
-                  size="sm"
-                >
-                  {{ tag }}
-                </UBadge>
-                <UBadge
-                  v-if="!project.url"
-                  color="warning"
-                  variant="subtle"
-                  size="sm"
-                >
-                  in progress
-                </UBadge>
-                <span
-                  v-else
-                  class="ml-auto inline-flex items-center gap-1 text-xs text-muted"
-                >
-                  {{ project.url.replace(/^https?:\/\//, '') }}
-                  <UIcon
-                    name="i-lucide-arrow-up-right"
-                    class="size-3.5"
-                  />
-                </span>
-              </div>
-            </template>
-          </UPageCard>
-        </UPageGrid>
+            <p class="max-w-2xl text-balance text-muted">
+              {{ l(profile.intro) }}
+            </p>
+          </BlurReveal>
+        </UContainer>
       </section>
 
       <section
-        v-if="links.length"
-        class="mt-16 space-y-4"
+        id="work"
+        class="scroll-mt-14 py-16"
       >
-        <h2 class="text-xs font-semibold uppercase tracking-widest text-muted">
-          Elsewhere
-        </h2>
-        <div class="flex flex-wrap gap-2">
-          <UButton
-            v-for="link in links"
-            :key="link.to"
-            :to="link.to"
-            :icon="link.icon"
-            target="_blank"
-            color="neutral"
-            variant="soft"
-          >
-            {{ link.label }}
-          </UButton>
-        </div>
+        <UContainer class="max-w-4xl space-y-8">
+          <h2 class="text-xs font-semibold uppercase tracking-widest text-muted">
+            {{ t('work.title') }}
+          </h2>
+          <div class="grid gap-6 sm:grid-cols-2">
+            <ProjectCard
+              v-for="project in featured"
+              :key="project.slug"
+              :project="project"
+            />
+          </div>
+          <h3 class="pt-4 text-xs font-semibold uppercase tracking-widest text-muted">
+            {{ t('work.more') }}
+          </h3>
+          <div class="grid gap-6 sm:grid-cols-2">
+            <ProjectCard
+              v-for="project in more"
+              :key="project.slug"
+              :project="project"
+            />
+          </div>
+        </UContainer>
       </section>
 
-      <footer class="mt-24 flex items-center justify-between border-t border-default pt-6 text-xs text-dimmed">
-        <span>© {{ year }} {{ profile.name }}</span>
-        <span>martinnavratil.dev</span>
-      </footer>
-    </UContainer>
+      <section
+        id="experience"
+        class="scroll-mt-14 py-16"
+      >
+        <UContainer class="max-w-4xl space-y-6">
+          <h2 class="text-xs font-semibold uppercase tracking-widest text-muted">
+            {{ t('experience.title') }}
+          </h2>
+          <ExperienceTable :entries="experience" />
+        </UContainer>
+      </section>
+
+      <section
+        id="contact"
+        class="scroll-mt-14 py-16"
+      >
+        <UContainer class="max-w-4xl space-y-6">
+          <h2 class="text-xs font-semibold uppercase tracking-widest text-muted">
+            {{ t('contact.title') }}
+          </h2>
+          <ContactBlock
+            :email="profile.email"
+            :links="links"
+          />
+        </UContainer>
+      </section>
+    </main>
+
+    <SiteFooter :name="profile.name" />
   </div>
 </template>

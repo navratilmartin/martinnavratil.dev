@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "skip": "Přeskočit na obsah",
+    "work": "Projekty",
+    "experience": "Zkušenosti",
+    "contact": "Kontakt",
+    "cv": "Životopis"
+  },
+  "work": {
+    "title": "Vybrané projekty",
+    "more": "Další projekty",
+    "live": "Web",
+    "source": "Zdrojový kód",
+    "role": "Role",
+    "stack": "Technologie",
+    "problem": "Problém",
+    "decisions": "Rozhodnutí",
+    "outcome": "Výsledek",
+    "details": "Podrobnosti",
+    "status": {
+      "live": "v provozu",
+      "in-progress": "ve vývoji",
+      "archived": "archiv"
+    }
+  },
+  "experience": {
+    "title": "Zkušenosti",
+    "period": "Období",
+    "company": "Firma",
+    "role": "Role",
+    "present": "dosud"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "lead": "Nejrychlejší cesta je e-mail.",
+    "copy": "Zkopírovat e-mail",
+    "copied": "Zkopírováno",
+    "downloadCv": "Stáhnout životopis (PDF)",
+    "webCv": "Životopis jako webová stránka"
+  },
+  "cv": {
+    "title": "Životopis",
+    "download": "Stáhnout PDF",
+    "back": "Zpět na web",
+    "selectedProjects": "Vybrané projekty",
+    "contact": "Kontakt"
+  },
+  "settings": {
+    "language": "Jazyk",
+    "theme": "Vzhled",
+    "themeDark": "Přepnout na světlý režim",
+    "themeLight": "Přepnout na tmavý režim",
+    "motion": "Animace",
+    "motionAuto": "Animace: podle systému",
+    "motionReduced": "Animace: omezené",
+    "motionFull": "Animace: plné"
+  },
+  "footer": {
+    "built": "Postaveno na Nuxtu. Zdrojový kód na GitHubu."
+  },
+  "nuxtSiteConfig": {
+    "name": "Martin Navrátil",
+    "description": "Frontend engineer a specialista na Nuxt, který dotáhne i backend."
+  }
+}

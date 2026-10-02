@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "skip": "Skip to content",
+    "work": "Work",
+    "experience": "Experience",
+    "contact": "Contact",
+    "cv": "CV"
+  },
+  "work": {
+    "title": "Selected work",
+    "more": "More projects",
+    "live": "Live",
+    "source": "Source",
+    "role": "Role",
+    "stack": "Stack",
+    "problem": "Problem",
+    "decisions": "Decisions",
+    "outcome": "Outcome",
+    "details": "Details",
+    "status": {
+      "live": "live",
+      "in-progress": "in progress",
+      "archived": "archived"
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "period": "Period",
+    "company": "Company",
+    "role": "Role",
+    "present": "present"
+  },
+  "contact": {
+    "title": "Contact",
+    "lead": "The fastest way is e-mail.",
+    "copy": "Copy e-mail",
+    "copied": "Copied",
+    "downloadCv": "Download CV (PDF)",
+    "webCv": "CV as a web page"
+  },
+  "cv": {
+    "title": "Curriculum vitae",
+    "download": "Download PDF",
+    "back": "Back to the site",
+    "selectedProjects": "Selected projects",
+    "contact": "Contact"
+  },
+  "settings": {
+    "language": "Language",
+    "theme": "Theme",
+    "themeDark": "Switch to light mode",
+    "themeLight": "Switch to dark mode",
+    "motion": "Motion",
+    "motionAuto": "Motion: system",
+    "motionReduced": "Motion: reduced",
+    "motionFull": "Motion: full"
+  },
+  "footer": {
+    "built": "Built with Nuxt. Source on GitHub."
+  },
+  "nuxtSiteConfig": {
+    "name": "Martin Navrátil",
+    "description": "Frontend engineer and Nuxt specialist who ships fullstack."
+  }
+}

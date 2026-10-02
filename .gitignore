@@ -22,3 +22,7 @@ node_modules
 .idea
 .vscode/*
 !.vscode/extensions.json
+
+# Tests
+test-results
+playwright-report

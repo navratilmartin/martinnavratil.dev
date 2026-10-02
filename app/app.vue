@@ -1,16 +1,19 @@
 <script setup lang="ts">
-const { profile } = useAppConfig()
+import * as uiLocales from '@nuxt/ui/locale'
+import { MotionConfig } from 'motion-v'
 
-useSeoMeta({
-  title: profile.name,
-  description: profile.tagline,
-  ogTitle: profile.name,
-  ogDescription: profile.tagline,
-})
+const { locale } = useI18n()
+const head = useLocaleHead()
+const { reduced } = useMotionPreference()
+
+useHead(head)
 </script>
 
 <template>
-  <UApp>
-    <NuxtPage />
+  <UApp :locale="uiLocales[locale]">
+    <!-- Every motion-v based component (that is most of Inspira UI) follows the motion switch. -->
+    <MotionConfig :reduced-motion="reduced ? 'always' : 'user'">
+      <NuxtPage />
+    </MotionConfig>
   </UApp>
 </template>

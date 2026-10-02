@@ -1,6 +1,90 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+@import "tw-animate-css";
+@import "lenis/dist/lenis.css";
 
+/* ------------------------------------------------------------------------------------------------
+   Inspira UI ↔ Nuxt UI token mapping.
+   Inspira components are written against shadcn-style tokens (`bg-background`, `text-foreground`,
+   `border-border`, …). This is the official mapping from
+   https://inspira-ui.com/docs/en/getting-started/installation (tab "Nuxt UI"), so every Inspira
+   component follows the Nuxt UI theme and the dark/light switch automatically.
+   Do not add Inspira's `html.dark` block or a second `@custom-variant dark`: Nuxt UI provides both.
+   ------------------------------------------------------------------------------------------------ */
+@theme static {
+  --color-background: var(--ui-bg);
+  --color-foreground: var(--ui-text);
+  --color-card: var(--ui-bg-elevated);
+  --color-card-foreground: var(--ui-text);
+  --color-popover: var(--ui-bg-elevated);
+  --color-popover-foreground: var(--ui-text);
+  --color-muted: var(--ui-bg-muted);
+  --color-muted-foreground: var(--ui-text-muted);
+  --color-accent: var(--ui-bg-accented);
+  --color-accent-foreground: var(--ui-text);
+  --color-border: var(--ui-border);
+  --color-input: var(--ui-border);
+  --color-primary: var(--ui-primary);
+  --color-primary-foreground: var(--ui-text-inverted);
+  --color-secondary: var(--ui-secondary);
+  --color-secondary-foreground: var(--ui-text-inverted);
+  --color-destructive: var(--ui-error);
+  --color-destructive-foreground: var(--ui-text-inverted);
+  --color-ring: var(--ui-primary);
+  --radius: var(--ui-radius);
+}
+
+:root {
+  --background: var(--ui-bg);
+  --foreground: var(--ui-text);
+  --card: var(--ui-bg-elevated);
+  --card-foreground: var(--ui-text);
+  --popover: var(--ui-bg-elevated);
+  --popover-foreground: var(--ui-text);
+  --muted: var(--ui-bg-muted);
+  --muted-foreground: var(--ui-text-muted);
+  --accent: var(--ui-bg-accented);
+  --accent-foreground: var(--ui-text);
+  --border: var(--ui-border);
+  --input: var(--ui-border);
+  --primary: var(--ui-primary);
+  --primary-foreground: var(--ui-text-inverted);
+  --secondary: var(--ui-secondary);
+  --secondary-foreground: var(--ui-text-inverted);
+  --destructive: var(--ui-error);
+  --destructive-foreground: var(--ui-text-inverted);
+  --ring: var(--ui-primary);
+}
+
+/* ------------------------------------------------------------------------------------------------
+   Site tokens. Placeholders until the design phase sets the real type scale and palette.
+   ------------------------------------------------------------------------------------------------ */
 @theme static {
   --font-sans: 'Inter', sans-serif;
+}
+
+/* ------------------------------------------------------------------------------------------------
+   Motion. Two switches, one rule set (see useMotionPreference):
+   - the OS setting applies unless the visitor explicitly chose full motion on the page;
+   - the on-page "reduced" choice applies regardless of the OS.
+   JS-driven motion (Lenis, GSAP, canvas, motion-v) checks the same flag; this is the CSS half.
+   ------------------------------------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html:not(.full-motion) *,
+  html:not(.full-motion) *::before,
+  html:not(.full-motion) *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
 }
