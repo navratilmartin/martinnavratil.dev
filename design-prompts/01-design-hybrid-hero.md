@@ -11,7 +11,7 @@ The personal portfolio of Martin Navrátil, senior frontend engineer and Nuxt sp
 - 10–20 s: the experience strip — employers, dates, roles, summaries — without a click.
 - 20–30 s: the first project card: working link, "Details" opening the reasoning in place.
 
-Selected work starts no lower than 160 vh desktop / 170 vh mobile; no preloader or scroll hijacking; links come from `app/data`; e-mail and CV one click from hero, header and ⌘K.
+Selected work starts no lower than 160 vh desktop / 170 vh mobile; no preloader or scroll hijacking; every string, link and date is in the Content and attachments section at the end; e-mail and CV one click from hero, header and ⌘K.
 
 ## Palette
 
@@ -88,11 +88,11 @@ Headings use `text-wrap: balance`; Czech runs ~20 % longer, so every heading fra
 
 1. **Name** — `MARTIN NAVRÁTIL`, real `<h1>`, `white-space: nowrap`, `contain: layout`; one line at ≥ 1024, `MARTIN` / `NAVRÁTIL` at 390; the accent may rise above the cap line. Server-painted at opacity 1, never faded in.
 2. **Deck** — 1440: posters 224 × 280 px, slot centres x = −195 / −65 / +65 / +195, rotations −12° / −4° / 4° / 12°, y offsets 0 / −12 / −12 / 0, z-order 1-2-4-3 (slot 3 front). Default order: Tábořiště Kondor, Becky, Nambi (front), SkautSim. 1280 and 768: 200 × 250, step 116. 390: 128 × 160, step 64, rotations ±8° / ±3°, static; each card's visible 64 px strip is its tap target. Between viewports: height `clamp(250px, 35svh, 280px)`, width 0.8 × height, step 0.58 × width. Screenshots ≤ 40 KB webp at 2× the device width, explicit `width`/`height`; front card `fetchpriority="high"`, the others `loading="eager" fetchpriority="low"`; tones, monogram and caption are CSS and paint before any image.
-3. **Identity sentence** (verbatim `profile.headline.en`), Fraunces 48 px, two to three lines, max 880 px: *Senior frontend engineer. Nuxt specialist who **ships** fullstack.* — "ships" is the italic accent twist word; Czech twist word **dotáhne**.
-4. **Stack line**, mono 14 px muted, five items from `skills[0]` + `skills[1]`: `Nuxt · Vue · TypeScript · Hono · Cloudflare Workers`.
+3. **Identity sentence** (the headline, verbatim), Fraunces 48 px, two to three lines, max 880 px: *Senior frontend engineer. Nuxt specialist who **ships** fullstack.* — "ships" is the italic accent twist word; Czech twist word **dotáhne**.
+4. **Stack line**, mono 14 px muted, five items from the skills list: `Nuxt · Vue · TypeScript · Hono · Cloudflare Workers`.
 5. **Buttons** — **Download CV (PDF)** primary, **Copy e-mail** secondary, 12 px apart.
 6. **Meta row**, mono 14 px faint: `Based in Czechia · remote only` · `hello@martinnavratil.dev` (`mailto:`) · `GitHub` · `LinkedIn`; links underlined, accent, 8 px vertical padding so the inline target reaches 24 px.
-7. **Intro** (verbatim `profile.intro.en`), Geist 18 px muted, one line, max 560 px; three lines at 390.
+7. **Intro**, verbatim: "I build fast, accessible web apps with Nuxt and Vue, and I take them all the way to production on Cloudflare." Geist 18 px muted, two lines, max 560 px; three lines at 390.
 
 ### Experience strip
 
@@ -102,7 +102,7 @@ Full-width `surface` band directly under the hero, hairlines top and bottom, 64 
 | 2020 — 2022 | Sensorico | Frontend Developer | Brno |
 | 2018 — 2020 | Spatial Hub | Frontend Developer | Brno |
 
-The Company cell holds a `<button aria-expanded aria-controls>` (row click delegated to it); the expanded content is the next `<tr>` with `colspan`: `highlights` (Develit) and `stack` chips, `layout` 300 ms. Under the table, from `volunteering`, never inside it: mono label **Volunteering** · `[TODO: year] — present · Junák – český skaut · Scout Group Leader · Blansko`. Below 1024: heading on top, no Where column, three-line rows.
+The Company cell holds a `<button aria-expanded aria-controls>` (row click delegated to it); the expanded content is the next `<tr>` with `colspan`: `highlights` (Develit) and `stack` chips, `layout` 300 ms. Under the table, never inside it: mono label **Volunteering** · `Junák – český skaut · Scout Group Leader · Blansko`, no dates until Martin confirms them. Below 1024: heading on top, no Where column, three-line rows.
 
 ### Selected work + detail panel
 
@@ -132,15 +132,15 @@ A4 from the same data; web top bar (hidden in print): "Back to the site", "Downl
 
 ## Project posters
 
-Dashboard screenshots are drab, so each project gets a designed poster: an HTML/CSS component exported at build to 640 × 800 webp for the mobile deck and OG images. System: 4:5, radius 20 px, two-tone background from the product's palette with 4 % grain; the project's first word as a Bricolage wdth 75 monogram (220 px, caption colour at 12 % opacity) bleeding off the top-right so only two or three letters show (Tábořiště → "TÁB"); Inspira **Safari Mockup** at 70 % of poster width anchored bottom-centre, or **iPhone Mockup** at 42 % width bleeding 25 % off the bottom (Nambi); a mono 13 px caption bottom-left — name · year · one stack word — on the tone named below. No real screenshots exist yet: the device holds a two-tone UI abstraction (nav bar, three cards, one table) labelled with the screen name. Root `role="img" aria-label="<name> — <tagline>"`, every child `aria-hidden="true"`, screenshot `<img alt="">`; the deck `<button>` carries the same label.
+Dashboard screenshots are drab, so each project gets a designed poster: an HTML/CSS component exported at build to 640 × 800 webp for the mobile deck and OG images. System: 4:5, radius 20 px, two-tone background from the product's palette with 4 % grain; the project's first word as a Bricolage wdth 75 monogram (220 px, caption colour at 12 % opacity) bleeding off the top-right so only two or three letters show (Tábořiště → "TÁB"); Inspira **Safari Mockup** at 70 % of poster width anchored bottom-centre, or **iPhone Mockup** at 42 % width bleeding 25 % off the bottom (Nambi); a mono 13 px caption bottom-left — name · year · one stack word — on the tone named below. The Safari frames hold the attached screenshots of the live sites (Tábořiště Kondor, SkautSim, Becky Kay Livingstonová), cropped to their top part. Nambi's app is private and Nuxt Study has no screenshot, so their frames hold a two-tone UI abstraction (nav bar, three cards, one list) in the poster's colours, labelled with the screen name. Root `role="img" aria-label="<name> — <tagline>"`, every child `aria-hidden="true"`, screenshot `<img alt="">`; the deck `<button>` carries the same label.
 
 | Poster | Tones | Caption | Device · screen |
 |---|---|---|---|
-| Nambi | coral #F26B5E → #2B1B1A [CHECK brand colour] | ink #0B0B0D on coral (6.6) | iPhone · [SCREENSHOT: app · offers list] |
-| Tábořiště Kondor | forest #1F3D2B → #0E1A13 | amber #E8B04B (6.1 / 9.1) | Safari · [SCREENSHOT: 3D campsite preview] |
-| Becky Kay Livingstonová | orange #FF6105 → cream #F5F5DC | ink #15151A, either end (6.0 / 16.4) | Safari · [SCREENSHOT: home hero] |
-| SkautSim | night #1A1F4A → #0B0D1F | #EDECE8 (13.3 / 16.3) | Safari · [SCREENSHOT: in-game view] |
-| Nuxt Study (OG only) | Nuxt green #00DC82 → #0B0B0D | ink #0B0B0D on green (10.8) | Safari · [SCREENSHOT: study page] |
+| Nambi | royal blue #4361EE at the top → cerise #EB49C8 at the bottom (Nambi's brand colours) | ink #0B0B0D on cerise (5.9) | iPhone · UI abstraction: offers list |
+| Tábořiště Kondor | forest #1F3D2B → #0E1A13 | amber #E8B04B (6.1 / 9.1) | Safari · attached screenshot: 3D campsite hero |
+| Becky Kay Livingstonová | orange #FF6105 → cream #F5F5DC | ink #15151A, either end (6.0 / 16.4) | Safari · attached screenshot: home page |
+| SkautSim | night #1A1F4A → #0B0D1F | #EDECE8 (13.3 / 16.3) | Safari · attached screenshot: lobby in the 3D camp |
+| Nuxt Study (OG only) | Nuxt green #00DC82 → #0B0B0D | ink #0B0B0D on green (10.8) | Safari · UI abstraction: study page |
 
 ## Components
 
@@ -212,5 +212,179 @@ Build the animations into the prototype (CSS transitions, IntersectionObserver r
 - No preloader, enter screen, scroll hijacking, pinning, fixed overlay layers, parallax, cursor follower or custom cursor; nothing animated crosses the experience strip.
 - No glow, glass blur, gradients outside posters, aurora / lamp / beam, bento for its own sake, marquee, `filter` animations.
 - The name is never an image, canvas or SVG and never starts at opacity 0; no canvas or WebGL on the page.
-- No lorem ipsum, invented metrics, clients, logos, screenshots or testimonials; missing facts render as `[TODO: …]`. No availability line, no phone, no private Gmail — only `hello@martinnavratil.dev`; no hard-coded copyright year.
+- No lorem ipsum, invented metrics, clients, logos, screenshots or testimonials; anything missing from the Content and attachments section is left out, never drawn as a placeholder. No availability line, no phone, no private Gmail — only `hello@martinnavratil.dev`; no hard-coded copyright year.
 - No Nuxt UI `dimmed` text, nothing under 12 px, no colour-only status, no hover-only affordances on touch, no Inter, no emoji.
+
+---
+
+<!-- content:start · generated by `pnpm brief:content` from the site data; do not edit by hand -->
+
+## Content and attachments
+
+This section is the only source of facts about Martin and his work: projects, jobs, dates, numbers and quotes. Use every string exactly as written. Anything not listed here does not exist yet: leave it out, never invent it, and never draw lorem ipsum, a placeholder or a TODO box. Interface labels that the brief itself introduces are allowed; every other label comes from the interface strings below. Field names used earlier in the brief (tagline, summary, role, highlights, detail, Problem / Decisions / Outcome) refer to the labels in this section.
+
+### Attachments
+
+- `portrait-placeholder.jpg`: Martin's portrait, a stand-in until the real photo arrives. Landscape 3:2 on a dark backdrop; crop it as the brief says.
+- `ref-1-rachelchen-identity-line.jpg` and `ref-2-sandwich-hero.jpg`: Martin's mood references for the hero. The first is a large serif identity sentence with one italic twist word beside an experience table; the second is a big name above a fanned stack of work images above a big role line. Inspiration only: where they differ from this brief, the brief wins. Never copy their text or images.
+- `shot-taboriste.jpg`: taboriste.fenixb.cz, the Tábořiště Kondor site with its 3D campsite hero.
+- `shot-skautsim.jpg`: skautsim.fenixb.cz, the SkautSim lobby inside the 3D camp.
+- `shot-becky.jpg`: beckykaylivingston.cz, the home page of Becky Kay Livingstonová's site.
+- `shot-nambi-landing.jpg`: nambi.cz, the public Nambi landing page. A brand reference only (colours, logo, type): Nambi's app is private, so its posters show a UI abstraction in Nambi's brand colours, never this page.
+- The three site screenshots go inside the poster device frames, cropped as the brief describes. Nuxt Study, Účetnictví Blansko, Skautské hlasování and RoboPilot have no screenshot: where the brief gives one of them a poster, draw a two-tone UI abstraction labelled with the project name.
+
+### Profile
+
+- Name: Martin Navrátil
+- Headline: Senior frontend engineer. Nuxt specialist who ships fullstack.
+- Intro: I build fast, accessible web apps with Nuxt and Vue, and I take them all the way to production on Cloudflare.
+- Location: Based in Czechia · remote only
+- E-mail: hello@martinnavratil.dev
+- Links: GitHub github.com/navratilmartin · LinkedIn linkedin.com/in/martin-navrátil-a14234232 · Site martinnavratil.dev
+- CV files: /martin-navratil-cv.pdf (English), /martin-navratil-cv-cs.pdf (Czech); the CV as a web page lives at /cv.
+
+### Featured projects, in this order
+
+#### Nambi
+- 2026 · in progress · Live: nambi.cz
+- Tagline: A barter marketplace where influencers exchange content for local-business experiences
+- Summary: Monorepo with a tRPC API on Nitro, admin and company web apps, a marketing landing and a Capacitor mobile app. Offers, applications, term proposals, deliverables, ratings and chat in one flow.
+- Role: Fullstack: architecture, API and data model, web apps, CI
+- Stack: Nuxt 4 · Turborepo · tRPC · Hono · better-auth · Cloudflare D1 · Capacitor · Vitest · Playwright
+- Problem: Collaborations between small businesses and influencers live in DMs and spreadsheets: no shared state, no history, no accountability.
+- Decisions:
+  1. One monorepo with shared packages, so the admin, company and mobile apps share types, auth and UI.
+  2. tRPC over Hono on Nitro for end-to-end typed APIs on Cloudflare D1.
+  3. Magic-link onboarding: an admin creates the company account, the company sets its own password.
+- Outcome: Demo-ready with seeded walkthrough accounts; dev, staging and production environments on Cloudflare.
+- The app is private; nambi.cz is its public landing page.
+- Brand colours (from Nambi's own design system): royal blue #4361EE, cerise #EB49C8, persimmon #F87153, deep navy #1A1B51.
+
+#### Tábořiště Kondor
+- 2026 · live · Live: taboriste.fenixb.cz
+- Tagline: Fundraising site for a scout troop building its own campsite
+- Summary: A static promo and fundraising site for the 3rd scout troop Kondor Blansko, with a 3D preview of the campsite and a door into SkautSim, a VR simulation of the camp.
+- Role: Design system, site, 3D integration
+- Stack: Nuxt 4 · PrimeVue · TresJS · three.js · Tailwind v4 · Cloudflare Workers
+- No Problem / Decisions / Outcome copy yet.
+
+#### Becky Kay Livingstonová
+- 2026 · live · Live: beckykaylivingston.cz
+- Tagline: A therapist's website built to be usable by everyone
+- Summary: Multi-page site with an accessibility-first brief: WCAG 2.2 AA as the floor, an on-page motion switch, axe and interaction checks in CI, GSAP scroll choreography and a contact form delivered through Cloudflare Email Routing without third parties.
+- Role: Design direction with Claude Design, build, accessibility audit
+- Stack: Astro 7 · Tailwind v4 · GSAP · Lenis · Cloudflare Workers · Playwright · axe-core
+- No Problem / Decisions / Outcome copy yet.
+
+#### SkautSim
+- 2026 · live · Live: skautsim.fenixb.cz
+- Tagline: A VR simulation of a scout camp with multiplayer
+- Summary: Bachelor's thesis project with two co-authors: walk through the planned campsite in VR, meet others in the same scene over WebRTC and send photos from the game to the campsite website.
+- Role: One of three authors: multiplayer and the bridge to the website
+- Stack: three.js · Vite · WebRTC · Docker
+- No Problem / Decisions / Outcome copy yet.
+
+### More projects, in this order
+
+#### Nuxt Study
+- 2026 · live · Live: prep.martinnavratil.dev
+- Tagline: A spaced-repetition study app for Vue, Nuxt and the web platform
+- Summary: 177 study pages in seven tracks, 749 questions with spaced repetition synced across devices, timed quiz runs with model answers, flashcards extracted from the content at build time, notes and progress stats.
+- Role: Solo: content model, custom Nuxt module, progress sync on D1, UI
+- Stack: Nuxt 4 · Nuxt Content 3 · Nuxt UI 4 · Cloudflare Workers · D1 · nuxt-auth-utils · CodeMirror
+- Problem: Keeping Vue, Nuxt and web-platform knowledge sharp meant juggling docs, notes and question lists with no feedback loop on what I actually retained.
+- Decisions:
+  1. Content as Markdown collections plus a local Nuxt module that extracts flashcards at build time, so one source feeds study pages, flashcards and the trainer.
+  2. Every page is prerendered; the Cloudflare Worker only runs for the progress-sync API backed by D1.
+  3. A Leitner-style scheduler brings weak questions back sooner instead of cycling everything equally.
+- Outcome: Live at prep.martinnavratil.dev: 749 questions, 157 glossary terms and a 21-day study plan.
+
+#### Účetnictví Blansko
+- 2025 · live · Source: github.com/navratilmartin/accountant-web
+- Tagline: Website for an accounting practice in Blansko
+- Summary: Service pages, client references and a contact form sending through Resend, with sitemap and image optimisation.
+- Role: Solo
+- Stack: Nuxt · UnoCSS · FormKit · Resend · Cloudflare Workers
+- No Problem / Decisions / Outcome copy yet.
+
+#### Skautské hlasování
+- 2025 · archived · no links
+- Tagline: Real-time emoji voting for scout meetings
+- Summary: A leader presents statements, participants vote anonymously from their phones and results update live. Runs on a local network without internet.
+- Role: Solo
+- Stack: Vue 3 · Vite · socket.io · Tailwind
+- No Problem / Decisions / Outcome copy yet.
+
+#### RoboPilot
+- 2025 · archived · no links
+- Tagline: Robot-arm control with live camera and audio streaming
+- Summary: A FastAPI camera server streaming over WebRTC, stream clients, and Python modules driving a UR arm and its gripper over sockets.
+- Role: Solo
+- Stack: Python · FastAPI · WebRTC · ur-rtde
+- No Problem / Decisions / Outcome copy yet.
+
+### Experience, newest first
+
+#### Develit
+- Aug 2022 – Sep 2026 · Full Stack Engineer · Remote
+- Summary: Fintech products on Nuxt 4 SSR, a company-wide microservice platform on Cloudflare Workers with typed RPC, and shared Nuxt layers used by every frontend app.
+- Highlights:
+  1. Led development on fintech projects built with Nuxt 4 SSR.
+  2. Designed the company microservice infrastructure on Cloudflare Workers with typed RPC.
+  3. Created company-wide Nuxt layers for UI shared across all frontend applications.
+  4. Built scalable web platforms following modern UI/UX principles.
+- Stack: TypeScript · Nuxt 4 · Nuxt Layers · Hono · Cloudflare Workers
+
+#### Sensorico
+- Dec 2020 – Aug 2022 · Frontend Developer · Brno
+- Summary: Web application for managing smart lighting and water meters, in a corporate, agile team.
+- Stack: TypeScript · Nuxt 3 · Tailwind · Vue Query · Zod
+
+#### Spatial Hub
+- Jul 2018 – Dec 2020 · Frontend Developer · Brno
+- Summary: An open-source UI library for augmented-reality environments and its integration into WebXR applications for businesses.
+- Stack: JavaScript · A-Frame · Three.js · Docker
+
+### Education
+
+- Mendel University, Brno · Bachelor's degree · Software Engineering
+- Years not confirmed yet: show no dates.
+- Note: Web applications, database systems, software architecture, OOP, neural networks, algorithms. Bachelor's thesis: a web multiplayer VR game (SkautSim).
+
+### Leadership
+
+- Junák – český skaut, Blansko · Scout Group Leader
+- Start year not confirmed yet: show no dates.
+- Summary: Leading a troop of 100+ members: leadership, teamwork and planning in practice.
+
+### Skills
+
+- Frontend: TypeScript · Vue · Nuxt · Nuxt Layers · CSS · SCSS · Tailwind
+- Backend & infrastructure: Hono · Drizzle · SQL · Cloudflare Workers · Docker · GitHub Actions · Sentry
+- Quality & tooling: Vitest · Zod · Figma
+- 3D & XR: Three.js · A-Frame · WebXR
+
+### Interface strings (English)
+
+- Navigation: Skip to content · Work · Experience · Contact · CV
+- Work: Selected work · More projects · Live · Source · Role · Stack · Problem · Decisions · Outcome · Details · live / in progress / archived
+- Experience: Experience · Period · Company · Role · present
+- Contact: Contact · The fastest way is e-mail. · Copy e-mail · Copied · Download CV (PDF) · CV as a web page
+- CV page: Curriculum vitae · Download PDF · Back to the site · Selected projects · Contact · Education · Skills · Leadership · Portrait of Martin Navrátil
+- Settings: Language · Theme · Switch to light mode · Switch to dark mode · Motion · Motion: system · Motion: reduced · Motion: full
+- Footer: Built with Nuxt. Source on GitHub.
+
+### Czech strings for the fit checks (Czech runs about 20 % longer)
+
+- Headline: Senior frontend engineer. Specialista na Nuxt, který dotáhne i backend.
+- Intro: Stavím rychlé a přístupné webové aplikace v Nuxtu a Vue a dotahuju je až do produkce na Cloudflare.
+- Location: Česko · pouze remote
+- Navigation: Přeskočit na obsah · Projekty · Zkušenosti · Kontakt · Životopis
+- Work: Vybrané projekty · Další projekty · Web · Zdrojový kód · Role · Technologie · Problém · Rozhodnutí · Výsledek · Podrobnosti · v provozu / ve vývoji / archiv
+- Experience: Zkušenosti · Období · Firma · Role · dosud
+- Contact: Kontakt · Nejrychlejší cesta je e-mail. · Zkopírovat e-mail · Zkopírováno · Stáhnout životopis (PDF) · Životopis jako webová stránka
+- CV page: Životopis · Stáhnout PDF · Zpět na web · Vybrané projekty · Kontakt · Vzdělání · Dovednosti · Vedení · Portrét Martina Navrátila
+- Settings: Jazyk · Vzhled · Přepnout na světlý režim · Přepnout na tmavý režim · Animace · Animace: podle systému · Animace: omezené · Animace: plné
+- Footer: Postaveno na Nuxtu. Zdrojový kód na GitHubu.
+
+<!-- content:end -->

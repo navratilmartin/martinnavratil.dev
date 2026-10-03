@@ -11,7 +11,7 @@
 - **GitHub:** `navratilmartin/martinnavratil.dev` — public (decided Q4; created at scaffold time)
 - **Placeholder online since:** 2026-09-20 (Nuxt 4 + Nuxt UI 4, one page driven by `app/app.config.ts`)
 - **Planning started:** 2026-10-02
-- **Phase:** 🟡 **design** — scaffold and real content done; briefs 01 and 02 ready to run in Claude Design (§2.1); next: Martin runs both, picks a prototype, design sync imports it into `design/`
+- **Phase:** 🟡 **design** — scaffold and real content done; all four briefs ready to send to Claude Design (§2.1); next: Martin runs them, picks a prototype, design sync imports it into `design/`
 
 ## 0. Process (agreed 2026-10-02)
 
@@ -90,6 +90,18 @@ classes after hydration); generate `public/inspect.json` at build (per-component
 Lighthouse CI + PageSpeed field data to the deploy job; render posters from `PosterSource.vue` with Playwright.
 Both briefs also ask Martin for `detail` copy (problem / decisions / outcome) for Kondor and Becky.
 
+**Correction, 2026-10-03.** On 2026-10-02 briefs 01 and 02 were called ready after only their contrast and
+structure were checked. They were not: Claude Design sees only the pasted brief and its attachments, and 01,
+02 and 04 referred to `app/data` instead of containing the copy (01 had 2 of 45 strings, 02 had 8, 04 had 9;
+only 03 had all of it). Fixed by `scripts/brief-content.ts` (`pnpm brief:content`), which writes one generated
+**Content and attachments** section into every brief from `app/data` + `i18n/locales`, between markers, so it
+is re-run after any content change. Also fixed: Nambi's guessed poster colours replaced by its real brand
+colours from `selectd/packages/shared-ui/assets/css/theme.css` (royal blue `#4361EE`, cerise `#EB49C8`,
+persimmon `#F87153`, deep navy `#1A1B51`); repo-only references removed; 01's TODO year removed; every brief now
+asks for working animations. Attachments live in `design-prompts/attach/` (git-ignored): the two hero
+references, screenshots of the four live sites taken with Playwright, the portrait as JPG. Verified: 45/45
+strings in every brief, no leftover markers, all contrast ratios recomputed. Martin will send all four.
+
 ## 3. Decisions log
 
 | Date | Decision | Why |
@@ -115,6 +127,8 @@ Both briefs also ask Martin for `detail` copy (problem / decisions / outcome) fo
 | 2026-10-02 | Featured = Nambi, Kondor + SkautSim, Becky; Nambi shown in full; study app reframed (Q16) | Martin's choice; the interview framing stays off the site |
 | 2026-10-02 | Photo yes (placeholder), remote only, hello@ alias, LinkedIn, no availability line, "senior" in the headline (Q17) | Martin's answers |
 | 2026-10-02 | Run briefs 01 and 02 in Claude Design, compare prototypes; grafts into 02 first | Settles the motion question with two cheap runs instead of a bet |
+| 2026-10-03 | Send all four briefs; every brief carries a generated Content and attachments section (`pnpm brief:content`) | Martin's choice; Claude Design cannot read the repo, so the copy must travel inside the brief |
+| 2026-10-03 | A volunteering start date is optional in the data model and is never guessed | The earlier placeholder date would have leaked into the briefs as fact |
 
 ## 4. Open questions — rest of the interview (recommended answers in bold)
 
@@ -314,7 +328,7 @@ Not on disk: employer / contract work for the experience table (❓ Q16).
 `i18n/locales/*.json` UI strings · `app/pages/index.vue` the page, `app/pages/cv.vue` the CV ·
 `app/components/` sections, `app/components/ui/` vendored Inspira, `app/components/OgImage/Default.takumi.vue`
 the OG template · `app/composables/useMotionPreference.ts` + `app/plugins/motion.client.ts` the motion switch ·
-`app/plugins/lenis.client.ts` smooth scroll · `scripts/cv-pdf.ts` PDF export · `tests/e2e/` axe + smoke.
+`app/plugins/lenis.client.ts` smooth scroll · `scripts/cv-pdf.ts` PDF export · `scripts/brief-content.ts` writes the copy into the design briefs · `tests/e2e/` axe + smoke.
 
 ### 7.1 Verified on 2026-10-02
 
@@ -365,6 +379,7 @@ the OG template · `app/composables/useMotionPreference.ts` + `app/plugins/motio
 
 - 2026-10-02 — Interview started (Q1–Q3 decided). Two research passes completed (§5). Martin shared two
   hero references (§2) and set the process order (§0). This file created.
+- 2026-10-03 — All four briefs made self-contained and verified (§2.1 correction); attachments prepared.
 - 2026-10-02 — Brief 02 revised with the grafts and verified (§2.1). Ready to run 01 and 02 in Claude Design.
 - 2026-10-02 — Four design briefs written, critiqued and ranked (§2.1, `design-prompts/`).
 - 2026-10-02 — Q16–Q17 answered from the CV and Martin's notes; content, photo placeholder and Email

@@ -13,6 +13,7 @@ pnpm install          # also runs `nuxt prepare`
 pnpm dev              # http://localhost:3000 (English) and /cs (Czech)
 pnpm generate         # static build into .output/public
 pnpm cv:pdf           # renders /cv and /cs/cv of the generated site to PDF (needs Chrome or `pnpm exec playwright install chromium`)
+pnpm brief:content    # writes the site's copy into every Claude Design brief in design-prompts/
 pnpm preview:cf       # serves the generated site like production (wrangler, http://localhost:8789)
 pnpm test:e2e         # Playwright: axe (WCAG 2.2 AA) + smoke, desktop and mobile, against preview:cf
 pnpm typecheck && pnpm lint

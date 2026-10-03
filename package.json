@@ -18,6 +18,7 @@
     "lint:fix": "eslint . --fix",
     "test:e2e": "playwright test",
     "cv:pdf": "jiti scripts/cv-pdf.ts",
+    "brief:content": "jiti scripts/brief-content.ts",
     "check": "pnpm typecheck && pnpm lint && pnpm generate && pnpm cv:pdf && pnpm test:e2e",
     "deploy": "pnpm generate && pnpm cv:pdf && wrangler deploy",
     "ui:add": "pnpm dlx shadcn-vue@latest add"

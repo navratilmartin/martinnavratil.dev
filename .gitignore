@@ -27,5 +27,5 @@ node_modules
 test-results
 playwright-report
 
-# Reference screenshots for the design briefs: third-party content, kept local only
-design-prompts/refs/
+# Attachments for the Claude Design runs (reference screenshots, site screenshots, portrait): local only
+design-prompts/attach/

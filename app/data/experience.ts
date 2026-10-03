@@ -61,7 +61,7 @@ export const experience: ExperienceEntry[] = [
 // Leadership outside work (CV "Soft Skills & Leadership").
 export const volunteering: ExperienceEntry[] = [
   {
-    from: '2015-01', // TODO(Martin): since when?
+    // TODO(Martin): the start year is unknown; add `from` once confirmed, never a guess.
     to: 'present',
     company: 'Junák – český skaut',
     location: 'Blansko',

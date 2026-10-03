@@ -27,8 +27,8 @@ export interface Profile {
 }
 
 export interface ExperienceEntry {
-  /** ISO month, e.g. `2024-09`. */
-  from: string
+  /** ISO month, e.g. `2024-09`. Omitted while unknown; never guessed. */
+  from?: string
   /** ISO month or `present`. */
   to: string
   company: string

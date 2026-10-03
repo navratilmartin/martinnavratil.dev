@@ -11,7 +11,7 @@ Four revised briefs for Claude Design, all bound by the hard constraints in PROJ
 | 03 Maximal dark | One breath: name, silk, live dots and portrait frame share a 6 s `--breath` clock | Silk behind hero, desktop pointer only | Silk, Breathing Text, Variable Letter Text, Text Hover Effect, Floating Card, Fey Cards, Scroll Island, Design Testimonials (rebuilt) | 6 / 6 / 6 (5 / 5 / 6) | Eight rebuilt effects, shader pixel tests, lowest scores | L |
 | 04 Bento proof | Self-measuring hero: Lighthouse, CWV, bundle size and last commit as tiles; same-size tiles swap, order remembered | Silk behind Contact, lazy | Scroll Island, Variable Text, Safari + iPhone Mockup, Silk, Blur Reveal | 7 / 6 / 6 (5 / 5 / 4) | CI + Worker pipeline before the hero is truthful; bento = 2026 default | L |
 
-**Update, 2026-10-02:** 02 is now at revision 3. The three grafts below are applied: posters from 01, the warm palette from 03, and the status-bar proof from 04. Two verifiers reviewed it (accessibility, design coherence) and their findings are folded in. All 35 stated contrast ratios were recomputed independently and match. The table row above still describes 02 before the grafts. Martin runs **01 and 02** in Claude Design and compares the prototypes.
+**Status, 2026-10-03: all four briefs are ready to send.** Each ends with the same generated **Content and attachments** section: every piece of the site's copy, verbatim, plus what each attachment is. Claude Design sees only the pasted brief and its attachments, never this repo, so before this section existed 01, 02 and 04 would have come back with invented or placeholder text. Nambi's posters use its real brand colours from its own design system. 02 is at revision 3, with the grafts below applied and two review passes folded in. Every stated contrast ratio in all four briefs was recomputed and checked.
 
 ## 2. Ranking and recommendation
 
@@ -26,14 +26,24 @@ Four revised briefs for Claude Design, all bound by the hard constraints in PROJ
 - From 03 → **Palette**: warm soot/bone neutrals with one amber accent (dark `#0C0B0A` / `#F1ECE3` / `#F5B82E`; light `#F4F0E8` / `#161412` / ochre `#7A4F00`, ratios already computed); it moves 02 off the grey-and-blue template without adding an effect.
 - From 04 → **The signature**, status bar: show this page's Lighthouse scores, CWV and first-view bundle size from the deploying CI run, linked. Inspect then explains the build and proves it.
 
-## 3. How to run it in Claude Design
+## 3. How to send a brief to Claude Design
 
-1. New Claude Design project, named after the variant.
-2. Attach `public/images/portrait-placeholder.webp` (real photo later) and the two hero references from `design-prompts/refs/` (local only, not in git): `ref-1-rachelchen-identity-line.jpg` (rachelchen.tech: serif identity sentence, italic twist word, experience table) and `ref-2-sandwich-hero.jpg` (sandwich hero: big name / fanned work images / big role line).
-3. Paste the whole brief as the first message, plus: "Build the animations into the prototype, do not only describe them."
-4. Ask for exactly the frames in its **Deliverables** section, in order; request missing ones singly.
-5. Fix contrast and Czech overflow inside Claude Design first; cheaper there.
-6. Import as in becky-web: `/design-login`, then `/design-sync` on the project; the prototype lands in `design/` (`<name>.dc.html` + `support.js`) as visual source of truth. Extract tokens into `app/assets/css/main.css`; log deviations in PROJECT.md.
+Run this first whenever the site's content has changed, so the briefs carry the current copy:
+
+```bash
+pnpm brief:content
+```
+
+The attachments live in `design-prompts/attach/`, which git ignores: the two hero references, four screenshots of the live sites (Tábořiště Kondor, SkautSim, Becky Kay Livingstonová, the Nambi landing page) and the portrait placeholder. Every brief explains what each file is for.
+
+For each brief, one Claude Design project:
+
+1. Create a new Claude Design project named after the brief, for example "Portfolio 01 Hybrid hero".
+2. Attach all seven files from `design-prompts/attach/`.
+3. Copy the whole brief file to the clipboard (`pbcopy < design-prompts/01-design-hybrid-hero.md`), paste it as the first message and send. The brief already lists the frames to deliver and asks for working animations.
+4. If a frame from the brief's Deliverables list is missing, ask for it by its number.
+5. Review the result against the checklist below and fix contrast or Czech overflow inside Claude Design.
+6. When one prototype wins, send its Claude Design link to Claude Code: it is imported with design sync into `design/` as the visual source of truth, tokens move into `app/assets/css/main.css`, and deviations are logged in PROJECT.md.
 
 ### Review checklist
 

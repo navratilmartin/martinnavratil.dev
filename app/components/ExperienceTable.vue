@@ -6,7 +6,8 @@ defineProps<{ entries: ExperienceEntry[] }>()
 const { t } = useI18n()
 const l = useLocalized()
 
-function year(month: string) {
+function year(month?: string) {
+  if (!month) return ''
   return month === 'present' ? t('experience.present') : month.slice(0, 4)
 }
 </script>
@@ -41,7 +42,7 @@ function year(month: string) {
     <tbody>
       <tr
         v-for="entry in entries"
-        :key="entry.company + entry.from"
+        :key="entry.company + (entry.from ?? '')"
         class="border-t border-default"
       >
         <td class="whitespace-nowrap py-3 pr-4 tabular-nums text-muted">

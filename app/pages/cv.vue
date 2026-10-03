@@ -113,7 +113,7 @@ defineOgImageComponent('Default', {
         <ul class="mt-4 space-y-5">
           <li
             v-for="entry in experience"
-            :key="entry.company + entry.from"
+            :key="entry.company + (entry.from ?? '')"
             class="grid gap-1 sm:grid-cols-[8rem_1fr]"
           >
             <span class="text-sm tabular-nums text-muted">{{ year(entry.from) }} – {{ year(entry.to) }}</span>
