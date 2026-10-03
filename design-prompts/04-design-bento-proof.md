@@ -80,9 +80,9 @@ Under the grid, 13 px mono, ≥ 1024 only: "Drag a tile onto one of the same siz
 
 **Mobile hero (< 768)**: one fixed column, auto heights, no handles. Portrait 96×128 beside the 36 px name; the stack string wraps to two lines; tile 01 ends with a 44 px CTA row — `hello@martinnavratil.dev` and vermilion **Download CV (PDF)** — so identity, stack and contact end at ≈ 520 of 812 px; Nambi's 16:10 poster (358×224) and **Live** pill follow on the first swipe.
 
-**Selected work** — three ruled rows (Nambi; Tábořiště Kondor + SkautSim; Becky Kay Livingstonová): 16:10 poster 320 px left; right, name Newsreader 32, tagline, summary and role verbatim from the Content and attachments section (roles: Nambi "Fullstack: architecture, API and data model, web apps, CI"; Kondor "Design system, site, 3D integration"; Becky "Design direction with Claude Design, build, accessibility audit"), mono stack, links (both for Kondor + SkautSim), **Details**. Details expands an in-page panel: **Problem**, **My role**, **Decisions** (numbered), **Outcome** in four columns (stacked on mobile), then **Links**; `aria-expanded`, Esc collapses, `?project=nambi` deep-links and moves focus to the panel heading. Only Nambi has `detail` copy; Kondor's and Becky's Details button is **hidden until theirs exists** — never a placeholder.
+**Selected work** — three ruled rows (Nambi; Tábořiště Kondor + SkautSim; Becky Kay Livingstonová): 16:10 poster 320 px left; right, name Newsreader 32, tagline, summary and role verbatim from the Content and images section (roles: Nambi "Fullstack: architecture, API and data model, web apps, CI"; Kondor "Design system, site, 3D integration"; Becky "Design direction with Claude Design, build, accessibility audit"), mono stack, links (both for Kondor + SkautSim), **Details**. Details expands an in-page panel: **Problem**, **My role**, **Decisions** (numbered), **Outcome** in four columns (stacked on mobile), then **Links**; `aria-expanded`, Esc collapses, `?project=nambi` deep-links and moves focus to the panel heading. Only Nambi has `detail` copy; Kondor's and Becky's Details button is **hidden until theirs exists** — never a placeholder.
 
-**More projects** — one ruled row per project, columns 3 / 5 / 3 / 1 of 12 (stacked < 768): name Geist 600 16 · tagline `muted` 14 verbatim · stack mono 12 · status pill; 4 px left rule in the product colour: Nuxt Study `#00DC82`, Účetnictví Blansko `#0F766E`, Skautské hlasování `#7C3AED`, RoboPilot `#DC2626`. Links and status as listed in the Content and attachments section; no thumbnails.
+**More projects** — one ruled row per project, columns 3 / 5 / 3 / 1 of 12 (stacked < 768): name Geist 600 16 · tagline `muted` 14 verbatim · stack mono 12 · status pill; 4 px left rule in the product colour: Nuxt Study `#00DC82`, Účetnictví Blansko `#0F766E`, Skautské hlasování `#7C3AED`, RoboPilot `#DC2626`. Links and status as listed in the Content and images section; no thumbnails.
 
 **Experience** — table Period · Company · Role · Location, mono dates, company Newsreader 24, summary `muted` 16 beneath, mono stack; then the four skill groups in full, Education (Mendel University, Brno — Bachelor's degree, Software Engineering, thesis SkautSim) and Leadership (Junák – český skaut, Scout Group Leader, 100+ members). Below 768 rows become cards with explicit `role="table" / row / columnheader / cell`.
 
@@ -96,9 +96,9 @@ Under the grid, 13 px mono, ≥ 1024 only: "Drag a tile onto one of the same siz
 
 ## Project posters
 
-Two compositions per featured project from the same art: **16:10** (640×400, 1280×800: tile 02, work rows, mobile) and **wide 10:3** (708×212, 1416×424: tiles 04, 05, and 02 at 4 columns). Three layers: abstract background in the product's colours, an Inspira device mockup of **one product component at 200 %**, cropped from the attached screenshot where one exists, never a whole page, and a 12 px mono wordmark. Static WebP with `width`/`height`, alt = project name + "poster"; Nambi's hero poster `fetchpriority="high" loading="eager"`, the rest `loading="lazy"`, all `decoding="async"`.
+Two compositions per featured project from the same art: **16:10** (640×400, 1280×800: tile 02, work rows, mobile) and **wide 10:3** (708×212, 1416×424: tiles 04, 05, and 02 at 4 columns). Three layers: abstract background in the product's colours, an Inspira device mockup of **one product component at 200 %**, never a whole page, whose screen stays an empty labelled placeholder in this design, and a 12 px mono wordmark. Static WebP with `width`/`height`, alt = project name + "poster"; Nambi's hero poster `fetchpriority="high" loading="eager"`, the rest `loading="lazy"`, all `decoding="async"`.
 
-- **Nambi** — two overlapping discs in Nambi's brand colours, royal blue `#4361EE` and cerise `#EB49C8`, on deep navy `#1A1B51`, 40 px blur; Safari mockup of one offer card, drawn as a UI abstraction in those colours because the app is private; `nambi.cz` wordmark in white (15.9:1).
+- **Nambi** — two overlapping discs in Nambi's brand colours, royal blue `#4361EE` and cerise `#EB49C8`, on deep navy `#1A1B51`, 40 px blur; Safari mockup whose screen is a placeholder for one offer card; `nambi.cz` wordmark in white (15.9:1).
 - **Tábořiště Kondor + SkautSim** — `#1F4D2E` → `#0C1A12`, 1 px topographic contour at 15 % white; iPhone mockup of the 3D campsite at an angle, a small 3:2 frame of the SkautSim VR scene; `taboriste.fenixb.cz · skautsim`.
 - **Becky Kay Livingstonová** — cream `#F5F5DC`, orange `#FF6105` condensed type fragments, 8 % grain; Safari mockup of her wordmark hero; `beckykaylivingston.cz`.
 
@@ -173,19 +173,15 @@ Content gaps for Martin before launch: Problem / Decisions / Outcome copy for Ko
 
 <!-- content:start · generated by `pnpm brief:content` from the site data; do not edit by hand -->
 
-## Content and attachments
+## Content and images
 
-This section is the only source of facts about Martin and his work: projects, jobs, dates, numbers and quotes. Use every string exactly as written. Anything not listed here does not exist yet: leave it out, never invent it, and never draw lorem ipsum, a placeholder or a TODO box. Interface labels that the brief itself introduces are allowed; every other label comes from the interface strings below. Field names used earlier in the brief (tagline, summary, role, highlights, detail, Problem / Decisions / Outcome) refer to the labels in this section.
+This section is the only source of facts about Martin and his work: projects, jobs, dates, numbers and quotes. Use every string exactly as written. Anything not listed here does not exist yet: leave it out, never invent it, and never draw lorem ipsum or a TODO box. Interface labels that the brief itself introduces are allowed; every other label comes from the interface strings below. Field names used earlier in the brief (tagline, summary, role, highlights, detail, Problem / Decisions / Outcome) refer to the labels in this section.
 
-### Attachments
+### Images
 
-- `portrait-placeholder.jpg`: Martin's portrait, a stand-in until the real photo arrives. Landscape 3:2 on a dark backdrop; crop it as the brief says.
-- `ref-1-rachelchen-identity-line.jpg` and `ref-2-sandwich-hero.jpg`: Martin's mood references for the hero. The first is a large serif identity sentence with one italic twist word beside an experience table; the second is a big name above a fanned stack of work images above a big role line. Inspiration only: where they differ from this brief, the brief wins. Never copy their text or images.
-- `shot-taboriste.jpg`: taboriste.fenixb.cz, the Tábořiště Kondor site with its 3D campsite hero.
-- `shot-skautsim.jpg`: skautsim.fenixb.cz, the SkautSim lobby inside the 3D camp.
-- `shot-becky.jpg`: beckykaylivingston.cz, the home page of Becky Kay Livingstonová's site.
-- `shot-nambi-landing.jpg`: nambi.cz, the public Nambi landing page. A brand reference only (colours, logo, type): Nambi's app is private, so its posters show a UI abstraction in Nambi's brand colours, never this page.
-- The three site screenshots go inside the poster device frames, cropped as the brief describes. Nuxt Study, Účetnictví Blansko, Skautské hlasování and RoboPilot have no screenshot: where the brief gives one of them a poster, draw a two-tone UI abstraction labelled with the project name.
+No images are attached: this design is a layout and motion study for Martin, and the real images are added in code. Wherever the brief mentions the portrait, a screenshot, a device screen or a photo, draw an empty frame at its exact size, aspect ratio, radius and position, filled with a flat neutral tone from the palette and a small mono label naming what will go there, for example "Portrait" or "Screenshot · taboriste.fenixb.cz". Everything else on a poster is designed in full: colour field, grain, monogram, device frame and caption. Only the screen inside the device stays empty. Never generate, search for or invent photos, screenshots, logos or stock imagery.
+
+For context, the hero direction comes from two references Martin liked: a large serif identity sentence with one italic twist word beside an experience table at a glance, and a big name above a fanned stack of work above a big role line. Where they differ from this brief, the brief wins.
 
 ### Profile
 

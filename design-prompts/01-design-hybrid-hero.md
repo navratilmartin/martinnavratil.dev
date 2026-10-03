@@ -11,7 +11,7 @@ The personal portfolio of Martin Navrátil, senior frontend engineer and Nuxt sp
 - 10–20 s: the experience strip — employers, dates, roles, summaries — without a click.
 - 20–30 s: the first project card: working link, "Details" opening the reasoning in place.
 
-Selected work starts no lower than 160 vh desktop / 170 vh mobile; no preloader or scroll hijacking; every string, link and date is in the Content and attachments section at the end; e-mail and CV one click from hero, header and ⌘K.
+Selected work starts no lower than 160 vh desktop / 170 vh mobile; no preloader or scroll hijacking; every string, link and date is in the Content and images section at the end; e-mail and CV one click from hero, header and ⌘K.
 
 ## Palette
 
@@ -132,15 +132,15 @@ A4 from the same data; web top bar (hidden in print): "Back to the site", "Downl
 
 ## Project posters
 
-Dashboard screenshots are drab, so each project gets a designed poster: an HTML/CSS component exported at build to 640 × 800 webp for the mobile deck and OG images. System: 4:5, radius 20 px, two-tone background from the product's palette with 4 % grain; the project's first word as a Bricolage wdth 75 monogram (220 px, caption colour at 12 % opacity) bleeding off the top-right so only two or three letters show (Tábořiště → "TÁB"); Inspira **Safari Mockup** at 70 % of poster width anchored bottom-centre, or **iPhone Mockup** at 42 % width bleeding 25 % off the bottom (Nambi); a mono 13 px caption bottom-left — name · year · one stack word — on the tone named below. The Safari frames hold the attached screenshots of the live sites (Tábořiště Kondor, SkautSim, Becky Kay Livingstonová), cropped to their top part. Nambi's app is private and Nuxt Study has no screenshot, so their frames hold a two-tone UI abstraction (nav bar, three cards, one list) in the poster's colours, labelled with the screen name. Root `role="img" aria-label="<name> — <tagline>"`, every child `aria-hidden="true"`, screenshot `<img alt="">`; the deck `<button>` carries the same label.
+Dashboard screenshots are drab, so each project gets a designed poster: an HTML/CSS component exported at build to 640 × 800 webp for the mobile deck and OG images. System: 4:5, radius 20 px, two-tone background from the product's palette with 4 % grain; the project's first word as a Bricolage wdth 75 monogram (220 px, caption colour at 12 % opacity) bleeding off the top-right so only two or three letters show (Tábořiště → "TÁB"); Inspira **Safari Mockup** at 70 % of poster width anchored bottom-centre, or **iPhone Mockup** at 42 % width bleeding 25 % off the bottom (Nambi); a mono 13 px caption bottom-left — name · year · one stack word — on the tone named below. In this design every device screen stays an empty placeholder labelled with the screenshot it will hold; the real screenshots are added in code. Root `role="img" aria-label="<name> — <tagline>"`, every child `aria-hidden="true"`, screenshot `<img alt="">`; the deck `<button>` carries the same label.
 
 | Poster | Tones | Caption | Device · screen |
 |---|---|---|---|
-| Nambi | royal blue #4361EE at the top → cerise #EB49C8 at the bottom (Nambi's brand colours) | ink #0B0B0D on cerise (5.9) | iPhone · UI abstraction: offers list |
-| Tábořiště Kondor | forest #1F3D2B → #0E1A13 | amber #E8B04B (6.1 / 9.1) | Safari · attached screenshot: 3D campsite hero |
-| Becky Kay Livingstonová | orange #FF6105 → cream #F5F5DC | ink #15151A, either end (6.0 / 16.4) | Safari · attached screenshot: home page |
-| SkautSim | night #1A1F4A → #0B0D1F | #EDECE8 (13.3 / 16.3) | Safari · attached screenshot: lobby in the 3D camp |
-| Nuxt Study (OG only) | Nuxt green #00DC82 → #0B0B0D | ink #0B0B0D on green (10.8) | Safari · UI abstraction: study page |
+| Nambi | royal blue #4361EE at the top → cerise #EB49C8 at the bottom (Nambi's brand colours) | ink #0B0B0D on cerise (5.9) | iPhone · screen placeholder: offers list |
+| Tábořiště Kondor | forest #1F3D2B → #0E1A13 | amber #E8B04B (6.1 / 9.1) | Safari · screen placeholder: 3D campsite hero |
+| Becky Kay Livingstonová | orange #FF6105 → cream #F5F5DC | ink #15151A, either end (6.0 / 16.4) | Safari · screen placeholder: home page |
+| SkautSim | night #1A1F4A → #0B0D1F | #EDECE8 (13.3 / 16.3) | Safari · screen placeholder: lobby in the 3D camp |
+| Nuxt Study (OG only) | Nuxt green #00DC82 → #0B0B0D | ink #0B0B0D on green (10.8) | Safari · screen placeholder: study page |
 
 ## Components
 
@@ -212,26 +212,22 @@ Build the animations into the prototype (CSS transitions, IntersectionObserver r
 - No preloader, enter screen, scroll hijacking, pinning, fixed overlay layers, parallax, cursor follower or custom cursor; nothing animated crosses the experience strip.
 - No glow, glass blur, gradients outside posters, aurora / lamp / beam, bento for its own sake, marquee, `filter` animations.
 - The name is never an image, canvas or SVG and never starts at opacity 0; no canvas or WebGL on the page.
-- No lorem ipsum, invented metrics, clients, logos, screenshots or testimonials; anything missing from the Content and attachments section is left out, never drawn as a placeholder. No availability line, no phone, no private Gmail — only `hello@martinnavratil.dev`; no hard-coded copyright year.
+- No lorem ipsum, invented metrics, clients, logos, screenshots or testimonials; facts missing from the Content and images section are left out, never drawn as text placeholders; image slots are the only placeholders. No availability line, no phone, no private Gmail — only `hello@martinnavratil.dev`; no hard-coded copyright year.
 - No Nuxt UI `dimmed` text, nothing under 12 px, no colour-only status, no hover-only affordances on touch, no Inter, no emoji.
 
 ---
 
 <!-- content:start · generated by `pnpm brief:content` from the site data; do not edit by hand -->
 
-## Content and attachments
+## Content and images
 
-This section is the only source of facts about Martin and his work: projects, jobs, dates, numbers and quotes. Use every string exactly as written. Anything not listed here does not exist yet: leave it out, never invent it, and never draw lorem ipsum, a placeholder or a TODO box. Interface labels that the brief itself introduces are allowed; every other label comes from the interface strings below. Field names used earlier in the brief (tagline, summary, role, highlights, detail, Problem / Decisions / Outcome) refer to the labels in this section.
+This section is the only source of facts about Martin and his work: projects, jobs, dates, numbers and quotes. Use every string exactly as written. Anything not listed here does not exist yet: leave it out, never invent it, and never draw lorem ipsum or a TODO box. Interface labels that the brief itself introduces are allowed; every other label comes from the interface strings below. Field names used earlier in the brief (tagline, summary, role, highlights, detail, Problem / Decisions / Outcome) refer to the labels in this section.
 
-### Attachments
+### Images
 
-- `portrait-placeholder.jpg`: Martin's portrait, a stand-in until the real photo arrives. Landscape 3:2 on a dark backdrop; crop it as the brief says.
-- `ref-1-rachelchen-identity-line.jpg` and `ref-2-sandwich-hero.jpg`: Martin's mood references for the hero. The first is a large serif identity sentence with one italic twist word beside an experience table; the second is a big name above a fanned stack of work images above a big role line. Inspiration only: where they differ from this brief, the brief wins. Never copy their text or images.
-- `shot-taboriste.jpg`: taboriste.fenixb.cz, the Tábořiště Kondor site with its 3D campsite hero.
-- `shot-skautsim.jpg`: skautsim.fenixb.cz, the SkautSim lobby inside the 3D camp.
-- `shot-becky.jpg`: beckykaylivingston.cz, the home page of Becky Kay Livingstonová's site.
-- `shot-nambi-landing.jpg`: nambi.cz, the public Nambi landing page. A brand reference only (colours, logo, type): Nambi's app is private, so its posters show a UI abstraction in Nambi's brand colours, never this page.
-- The three site screenshots go inside the poster device frames, cropped as the brief describes. Nuxt Study, Účetnictví Blansko, Skautské hlasování and RoboPilot have no screenshot: where the brief gives one of them a poster, draw a two-tone UI abstraction labelled with the project name.
+No images are attached: this design is a layout and motion study for Martin, and the real images are added in code. Wherever the brief mentions the portrait, a screenshot, a device screen or a photo, draw an empty frame at its exact size, aspect ratio, radius and position, filled with a flat neutral tone from the palette and a small mono label naming what will go there, for example "Portrait" or "Screenshot · taboriste.fenixb.cz". Everything else on a poster is designed in full: colour field, grain, monogram, device frame and caption. Only the screen inside the device stays empty. Never generate, search for or invent photos, screenshots, logos or stock imagery.
+
+For context, the hero direction comes from two references Martin liked: a large serif identity sentence with one italic twist word beside an experience table at a glance, and a big name above a fanned stack of work above a big role line. Where they differ from this brief, the brief wins.
 
 ### Profile
 

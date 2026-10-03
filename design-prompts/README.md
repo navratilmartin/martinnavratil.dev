@@ -11,7 +11,7 @@ Four revised briefs for Claude Design, all bound by the hard constraints in PROJ
 | 03 Maximal dark | One breath: name, silk, live dots and portrait frame share a 6 s `--breath` clock | Silk behind hero, desktop pointer only | Silk, Breathing Text, Variable Letter Text, Text Hover Effect, Floating Card, Fey Cards, Scroll Island, Design Testimonials (rebuilt) | 6 / 6 / 6 (5 / 5 / 6) | Eight rebuilt effects, shader pixel tests, lowest scores | L |
 | 04 Bento proof | Self-measuring hero: Lighthouse, CWV, bundle size and last commit as tiles; same-size tiles swap, order remembered | Silk behind Contact, lazy | Scroll Island, Variable Text, Safari + iPhone Mockup, Silk, Blur Reveal | 7 / 6 / 6 (5 / 5 / 4) | CI + Worker pipeline before the hero is truthful; bento = 2026 default | L |
 
-**Status, 2026-10-03: all four briefs are ready to send.** Each ends with the same generated **Content and attachments** section: every piece of the site's copy, verbatim, plus what each attachment is. Claude Design sees only the pasted brief and its attachments, never this repo, so before this section existed 01, 02 and 04 would have come back with invented or placeholder text. Nambi's posters use its real brand colours from its own design system. 02 is at revision 3, with the grafts below applied and two review passes folded in. Every stated contrast ratio in all four briefs was recomputed and checked.
+**Status, 2026-10-03: all four briefs are ready to send.** Each ends with the same generated **Content and images** section: every piece of the site's copy, verbatim, and the rule that every image slot stays a labelled placeholder. Claude Design sees only the pasted brief, never this repo, so before this section existed 01, 02 and 04 would have come back with invented or placeholder text. Nambi's posters use its real brand colours from its own design system. 02 is at revision 3, with the grafts below applied and two review passes folded in. Every stated contrast ratio in all four briefs was recomputed and checked.
 
 ## 2. Ranking and recommendation
 
@@ -34,16 +34,15 @@ Run this first whenever the site's content has changed, so the briefs carry the 
 pnpm brief:content
 ```
 
-The attachments live in `design-prompts/attach/`, which git ignores: the two hero references, four screenshots of the live sites (Tábořiště Kondor, SkautSim, Becky Kay Livingstonová, the Nambi landing page) and the portrait placeholder. Every brief explains what each file is for.
+Nothing is attached. The designs are for Martin's review only, so every image slot stays an empty frame with a label: the portrait, the screenshots and the device screens. The real images are added in code; `design-prompts/attach/`, which git ignores, keeps the site screenshots for that step.
 
 For each brief, one Claude Design project:
 
 1. Create a new Claude Design project named after the brief, for example "Portfolio 01 Hybrid hero".
-2. Attach all seven files from `design-prompts/attach/`.
-3. Copy the whole brief file to the clipboard (`pbcopy < design-prompts/01-design-hybrid-hero.md`), paste it as the first message and send. The brief already lists the frames to deliver and asks for working animations.
-4. If a frame from the brief's Deliverables list is missing, ask for it by its number.
-5. Review the result against the checklist below and fix contrast or Czech overflow inside Claude Design.
-6. When one prototype wins, send its Claude Design link to Claude Code: it is imported with design sync into `design/` as the visual source of truth, tokens move into `app/assets/css/main.css`, and deviations are logged in PROJECT.md.
+2. Copy the whole brief file to the clipboard (`pbcopy < design-prompts/01-design-hybrid-hero.md`), paste it as the first message and send. The brief already lists the frames to deliver and asks for working animations.
+3. If a frame from the brief's Deliverables list is missing, ask for it by its number.
+4. Review the result against the checklist below and fix contrast or Czech overflow inside Claude Design.
+5. When one prototype wins, send its Claude Design link to Claude Code: it is imported with design sync into `design/` as the visual source of truth, tokens move into `app/assets/css/main.css`, and deviations are logged in PROJECT.md.
 
 ### Review checklist
 
@@ -54,6 +53,6 @@ For each brief, one Claude Design project:
 5. **Mobile nav** — 390 px frames closed and open, 44 px targets, focus trap, Esc closes.
 6. **Panel states** — Nambi open (desktop + mobile), no-detail variant without empty labels, focus returns on close, one at a time.
 7. **/cv** — screen and A4 frames, two pages maximum, black on white, URLs printed.
-8. **Posters** — one system for every featured project, product colours, device mockup, no invented screenshots, alt stated.
+8. **Posters** — one system for every featured project, product colours, device mockup, device screens left as labelled placeholders, nothing invented, alt stated.
 9. **Czech fit** — "Senior frontend engineer. Specialista na Nuxt, který dotáhne i backend.", "Stáhnout životopis (PDF)", "Životopis jako webová stránka" and the four nav labels fit every frame.
 10. **Inspira catalog** — only components the brief names; none of Shimmer Button, Bento Grid, Dock, Marquee, Meteors, Border Beam, Flip Words, Text Generate, Globe, Aurora, Lamp; no glow or glass.

@@ -1,8 +1,8 @@
 /**
- * Writes the "Content and attachments" section into every design brief (design-prompts/0*.md).
+ * Writes the "Content and images" section into every design brief (design-prompts/0*.md).
  *
- * Claude Design sees only the pasted brief and its attachments, never this repo, so every string it
- * may use has to be inside the brief. This section is generated from app/data and i18n/locales,
+ * Claude Design sees only the pasted brief, never this repo, so every string it may use has to be
+ * inside the brief. No images are sent: the briefs ask for labelled placeholders, real images come in code. This section is generated from app/data and i18n/locales,
  * identical in all briefs, and replaced in place between the markers on every run.
  *
  * Run after any content change, before sending a brief: `pnpm brief:content`
@@ -109,19 +109,15 @@ const leader = volunteering[0]!
 
 const block = `${START}
 
-## Content and attachments
+## Content and images
 
-This section is the only source of facts about Martin and his work: projects, jobs, dates, numbers and quotes. Use every string exactly as written. Anything not listed here does not exist yet: leave it out, never invent it, and never draw lorem ipsum, a placeholder or a TODO box. Interface labels that the brief itself introduces are allowed; every other label comes from the interface strings below. Field names used earlier in the brief (tagline, summary, role, highlights, detail, Problem / Decisions / Outcome) refer to the labels in this section.
+This section is the only source of facts about Martin and his work: projects, jobs, dates, numbers and quotes. Use every string exactly as written. Anything not listed here does not exist yet: leave it out, never invent it, and never draw lorem ipsum or a TODO box. Interface labels that the brief itself introduces are allowed; every other label comes from the interface strings below. Field names used earlier in the brief (tagline, summary, role, highlights, detail, Problem / Decisions / Outcome) refer to the labels in this section.
 
-### Attachments
+### Images
 
-- \`portrait-placeholder.jpg\`: Martin's portrait, a stand-in until the real photo arrives. Landscape 3:2 on a dark backdrop; crop it as the brief says.
-- \`ref-1-rachelchen-identity-line.jpg\` and \`ref-2-sandwich-hero.jpg\`: Martin's mood references for the hero. The first is a large serif identity sentence with one italic twist word beside an experience table; the second is a big name above a fanned stack of work images above a big role line. Inspiration only: where they differ from this brief, the brief wins. Never copy their text or images.
-- \`shot-taboriste.jpg\`: taboriste.fenixb.cz, the Tábořiště Kondor site with its 3D campsite hero.
-- \`shot-skautsim.jpg\`: skautsim.fenixb.cz, the SkautSim lobby inside the 3D camp.
-- \`shot-becky.jpg\`: beckykaylivingston.cz, the home page of Becky Kay Livingstonová's site.
-- \`shot-nambi-landing.jpg\`: nambi.cz, the public Nambi landing page. A brand reference only (colours, logo, type): Nambi's app is private, so its posters show a UI abstraction in Nambi's brand colours, never this page.
-- The three site screenshots go inside the poster device frames, cropped as the brief describes. Nuxt Study, Účetnictví Blansko, Skautské hlasování and RoboPilot have no screenshot: where the brief gives one of them a poster, draw a two-tone UI abstraction labelled with the project name.
+No images are attached: this design is a layout and motion study for Martin, and the real images are added in code. Wherever the brief mentions the portrait, a screenshot, a device screen or a photo, draw an empty frame at its exact size, aspect ratio, radius and position, filled with a flat neutral tone from the palette and a small mono label naming what will go there, for example "Portrait" or "Screenshot · taboriste.fenixb.cz". Everything else on a poster is designed in full: colour field, grain, monogram, device frame and caption. Only the screen inside the device stays empty. Never generate, search for or invent photos, screenshots, logos or stock imagery.
+
+For context, the hero direction comes from two references Martin liked: a large serif identity sentence with one italic twist word beside an experience table at a glance, and a big name above a fanned stack of work above a big role line. Where they differ from this brief, the brief wins.
 
 ### Profile
 

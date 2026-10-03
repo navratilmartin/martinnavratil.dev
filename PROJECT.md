@@ -101,6 +101,10 @@ persimmon `#F87153`, deep navy `#1A1B51`); repo-only references removed; 01's TO
 asks for working animations. Attachments live in `design-prompts/attach/` (git-ignored): the two hero
 references, screenshots of the four live sites taken with Playwright, the portrait as JPG. Verified: 45/45
 strings in every brief, no leftover markers, all contrast ratios recomputed. Martin will send all four.
+Revised the same day at Martin's request: the designs are for his own review, so **nothing is attached**.
+Every image slot (portrait, screenshots, device screens) is drawn as an empty labelled frame; the real images
+come in code. The generated section is now called **Content and images**; `design-prompts/attach/` keeps the
+site screenshots for the build.
 
 ## 3. Decisions log
 
@@ -129,6 +133,7 @@ strings in every brief, no leftover markers, all contrast ratios recomputed. Mar
 | 2026-10-02 | Run briefs 01 and 02 in Claude Design, compare prototypes; grafts into 02 first | Settles the motion question with two cheap runs instead of a bet |
 | 2026-10-03 | Send all four briefs; every brief carries a generated Content and attachments section (`pnpm brief:content`) | Martin's choice; Claude Design cannot read the repo, so the copy must travel inside the brief |
 | 2026-10-03 | A volunteering start date is optional in the data model and is never guessed | The earlier placeholder date would have leaked into the briefs as fact |
+| 2026-10-03 | Claude Design gets no images; image slots are labelled placeholders, real images only in code | Martin: the designs are for his review, the photos matter in the code |
 
 ## 4. Open questions — rest of the interview (recommended answers in bold)
 

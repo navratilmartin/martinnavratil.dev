@@ -96,14 +96,14 @@ Desktop (≥ 768): "Martin Navrátil" left (15px/500, to top); right Work · Exp
 
 Dashboard screenshots are drab, so every featured project gets a designed poster on one system. Source: an HTML/CSS component (`PosterSource.vue`, never in the site bundle) screenshotted at 1600×1200 by the Playwright script that makes the PDF, served as **build-time WebP**; Inspira's Safari / iPhone frame SVGs are a design-time template only (one `img` and one alt per poster; the only use of Inspira). Sizes are at the hero's 283×212; the card (320×240) and the mobile strip (218×164) scale the same 4:3 file.
 
-**System.** 4px radius, 1px `line-strong` edge in the theme's value (the only theme-dependent part). Field: two product tones, A filling the upper 60% and blending into B over a 20% band, a static 256×256 noise tile at 4% `soft-light` baked in — never a live filter. Monogram: the project's first word in Newsreader 400 roman, 96px (34% of poster width; 109 card, 74 mobile), the table's monogram colour at 12% opacity, bleeding off the top-right so two or three letters show (Tábořiště → "TÁB"). Device: **Safari frame at 72% of poster width, bottom-centre, its bottom edge 32px above the poster edge**, leaving the lowest 32px of tone B as a caption band; or **iPhone frame at 34% width, bottom-right, 16px right inset, bleeding 25% off the bottom** (Nambi), leaving x 12–160 free. Live products hold their attached screenshot (Tábořiště Kondor, SkautSim, Becky Kay Livingstonová), cropped at 1.25× so the first 60% of the viewport fills the frame; Nambi (private) holds a two-tone UI abstraction (nav bar, three cards, one list) labelled "Offers". Caption: mono 13px bottom-left, 12px inset, on tone B, `name · year · one stack word`, ≤ 32 characters (≈ 250px); the table gives the short name where the full one overruns.
+**System.** 4px radius, 1px `line-strong` edge in the theme's value (the only theme-dependent part). Field: two product tones, A filling the upper 60% and blending into B over a 20% band, a static 256×256 noise tile at 4% `soft-light` baked in — never a live filter. Monogram: the project's first word in Newsreader 400 roman, 96px (34% of poster width; 109 card, 74 mobile), the table's monogram colour at 12% opacity, bleeding off the top-right so two or three letters show (Tábořiště → "TÁB"). Device: **Safari frame at 72% of poster width, bottom-centre, its bottom edge 32px above the poster edge**, leaving the lowest 32px of tone B as a caption band; or **iPhone frame at 34% width, bottom-right, 16px right inset, bleeding 25% off the bottom** (Nambi), leaving x 12–160 free. In this design every device screen stays an empty placeholder labelled with the screenshot it will hold; in code, each screen gets a real screenshot cropped at 1.25× so the first 60% of the viewport fills the frame. Caption: mono 13px bottom-left, 12px inset, on tone B, `name · year · one stack word`, ≤ 32 characters (≈ 250px); the table gives the short name where the full one overruns.
 
 | Poster | Tones A → B | Caption (on B) | Monogram (on A, at 12%) | Device · screen |
 |---|---|---|---|---|
-| Nambi | royal blue `#4361EE` → cerise `#EB49C8` (Nambi's brand colours) | "Nambi", ink `#0C0B0A` (5.92) | white `#FFFFFF` (5.02) | iPhone · UI abstraction: offers list |
-| Tábořiště Kondor (hero version: SkautSim's night tone bleeds in at the right 22%; the card drops it) | forest `#1F3D2B` → `#0E1A13` | "Tábořiště Kondor", Amber `#F5B82E` (10.02) | Amber (6.69) | Safari · attached screenshot: 3D campsite hero |
-| SkautSim (card only) | night `#1A1F4A` → `#0B0D1F` | "SkautSim", Bone (16.35) | Bone (13.33) | Safari · attached screenshot: lobby in the 3D camp |
-| Becky Kay Livingstonová | orange `#FF6105` → cream `#F5F5DC` | "Becky Kay L.", ink `#161412` (16.60) | ink `#161412` (6.09) | Safari · attached screenshot: home page |
+| Nambi | royal blue `#4361EE` → cerise `#EB49C8` (Nambi's brand colours) | "Nambi", ink `#0C0B0A` (5.92) | white `#FFFFFF` (5.02) | iPhone · screen placeholder: offers list |
+| Tábořiště Kondor (hero version: SkautSim's night tone bleeds in at the right 22%; the card drops it) | forest `#1F3D2B` → `#0E1A13` | "Tábořiště Kondor", Amber `#F5B82E` (10.02) | Amber (6.69) | Safari · screen placeholder: 3D campsite hero |
+| SkautSim (card only) | night `#1A1F4A` → `#0B0D1F` | "SkautSim", Bone (16.35) | Bone (13.33) | Safari · screen placeholder: lobby in the 3D camp |
+| Becky Kay Livingstonová | orange `#FF6105` → cream `#F5F5DC` | "Becky Kay L.", ink `#161412` (16.60) | ink `#161412` (6.09) | Safari · screen placeholder: home page |
 
 Cream on light `bg` is 1.03:1, cerise 2.92:1, orange ≈ 2.6:1, and the dark tone Bs on dark `bg` 1.02–1.10:1, so the `line-strong` edge is never dropped. The edge contrasts with `bg` on its outer side at 3.81 dark / 3.57 light, which is the ratio that marks the boundary; against the inner tones it may be as low as 1.03 (dark edge on royal blue) and is not relied on.
 
@@ -183,19 +183,15 @@ Build the animations into the prototype (CSS transitions, IntersectionObserver r
 
 <!-- content:start · generated by `pnpm brief:content` from the site data; do not edit by hand -->
 
-## Content and attachments
+## Content and images
 
-This section is the only source of facts about Martin and his work: projects, jobs, dates, numbers and quotes. Use every string exactly as written. Anything not listed here does not exist yet: leave it out, never invent it, and never draw lorem ipsum, a placeholder or a TODO box. Interface labels that the brief itself introduces are allowed; every other label comes from the interface strings below. Field names used earlier in the brief (tagline, summary, role, highlights, detail, Problem / Decisions / Outcome) refer to the labels in this section.
+This section is the only source of facts about Martin and his work: projects, jobs, dates, numbers and quotes. Use every string exactly as written. Anything not listed here does not exist yet: leave it out, never invent it, and never draw lorem ipsum or a TODO box. Interface labels that the brief itself introduces are allowed; every other label comes from the interface strings below. Field names used earlier in the brief (tagline, summary, role, highlights, detail, Problem / Decisions / Outcome) refer to the labels in this section.
 
-### Attachments
+### Images
 
-- `portrait-placeholder.jpg`: Martin's portrait, a stand-in until the real photo arrives. Landscape 3:2 on a dark backdrop; crop it as the brief says.
-- `ref-1-rachelchen-identity-line.jpg` and `ref-2-sandwich-hero.jpg`: Martin's mood references for the hero. The first is a large serif identity sentence with one italic twist word beside an experience table; the second is a big name above a fanned stack of work images above a big role line. Inspiration only: where they differ from this brief, the brief wins. Never copy their text or images.
-- `shot-taboriste.jpg`: taboriste.fenixb.cz, the Tábořiště Kondor site with its 3D campsite hero.
-- `shot-skautsim.jpg`: skautsim.fenixb.cz, the SkautSim lobby inside the 3D camp.
-- `shot-becky.jpg`: beckykaylivingston.cz, the home page of Becky Kay Livingstonová's site.
-- `shot-nambi-landing.jpg`: nambi.cz, the public Nambi landing page. A brand reference only (colours, logo, type): Nambi's app is private, so its posters show a UI abstraction in Nambi's brand colours, never this page.
-- The three site screenshots go inside the poster device frames, cropped as the brief describes. Nuxt Study, Účetnictví Blansko, Skautské hlasování and RoboPilot have no screenshot: where the brief gives one of them a poster, draw a two-tone UI abstraction labelled with the project name.
+No images are attached: this design is a layout and motion study for Martin, and the real images are added in code. Wherever the brief mentions the portrait, a screenshot, a device screen or a photo, draw an empty frame at its exact size, aspect ratio, radius and position, filled with a flat neutral tone from the palette and a small mono label naming what will go there, for example "Portrait" or "Screenshot · taboriste.fenixb.cz". Everything else on a poster is designed in full: colour field, grain, monogram, device frame and caption. Only the screen inside the device stays empty. Never generate, search for or invent photos, screenshots, logos or stock imagery.
+
+For context, the hero direction comes from two references Martin liked: a large serif identity sentence with one italic twist word beside an experience table at a glance, and a big name above a fanned stack of work above a big role line. Where they differ from this brief, the brief wins.
 
 ### Profile
 
