@@ -1,13 +1,16 @@
 /**
- * Writes the "Content and images" section into every design brief (design-prompts/0*.md).
+ * Prepares the design briefs for Claude Design.
  *
- * Claude Design sees only the pasted brief, never this repo, so every string it may use has to be
- * inside the brief. No images are sent: the briefs ask for labelled placeholders, real images come in code. This section is generated from app/data and i18n/locales,
- * identical in all briefs, and replaced in place between the markers on every run.
+ * 1. Writes the "Content and images" section into every brief (design-prompts/0*.md). Claude Design
+ *    sees only what it is sent, never this repo, so every string it may use has to be inside the
+ *    brief. No images are sent: the briefs ask for labelled placeholders, real images come in code.
+ *    The section is generated from app/data and i18n/locales and replaced between its markers.
+ * 2. Writes the two-part send files (design-prompts/send/) for the briefs that are too big for one
+ *    Claude Design run, see `splits` below.
  *
- * Run after any content change, before sending a brief: `pnpm brief:content`
+ * Run after any content or brief change, before sending: `pnpm brief:content`
  */
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import type { ExperienceEntry, Localized, Project } from '../shared/types/content'
 import { profile } from '../app/data/profile'
@@ -190,3 +193,247 @@ for (const file of readdirSync(briefsDir).filter(name => /^\d{2}-.*\.md$/.test(n
   console.log(`${file}: content section written`)
 }
 if (!written) throw new Error(`No briefs found in ${briefsDir}`)
+
+// ------------------------------------------------------------------------------------------------
+// Two-part send files. Claude Design stalled whenever one message asked for a whole interactive
+// site, so briefs 01, 03 and 04 go in two messages to the same project: part 1 carries the complete
+// brief but builds only the core, part 2 builds the rest. Brief 02 went through whole and stays so.
+// ------------------------------------------------------------------------------------------------
+
+type Selector = { heading: string } | { paragraph: string }
+
+interface Split {
+  source: string
+  out: string
+  title: string
+  part1: string[]
+  notNow: string[]
+  dropFromPart1?: string[]
+  done: string
+  part2: string[]
+  specs: Selector[]
+}
+
+const splits: Split[] = [
+  {
+    source: '01-design-hybrid-hero.md',
+    out: '01-hybrid-hero',
+    title: 'Portfolio design 01 · Hybrid hero',
+    part1: [
+      'Tokens and the style tile: both palettes, the type scale with Czech diacritics, buttons and links in every state including the double focus ring, chips, one table row, one poster (Deliverables item 1).',
+      'The poster system and all five posters from the Project posters section, device screens as labelled placeholders.',
+      'The home page, desktop 1440, dark theme, English, full length: header, hero with the deck, experience strip, Selected work cards with their panels closed, More projects, Contact, footer (Deliverables item 2, the desktop dark frame).',
+      'The signature working on that page: the deck entrance, hover lift and tilt, drag and click to reorder, the keyboard model, the deal-out on scroll, and the section reveals, as in the full-motion column of the Motion table.',
+    ],
+    notNow: [
+      'Light theme and the theme toggle.',
+      'Mobile 390, the 768 header, the slideover menu and the bottom drawer.',
+      'Open detail panels, including the no-detail variant.',
+      '⌘K, the EN/CS switch, the motion switch and the reduced-motion column.',
+      'The states sheet, the motion spec and the /cv page.',
+    ],
+    done: 'the tokens, the style tile, the posters and the desktop dark home page with the working deck',
+    part2: [
+      'Light theme for the page and the style tile, with the theme toggle and its circular reveal (Deliverables item 2, the light frames).',
+      'Mobile 390 in dark and light: the two-line name, the static fan, the menu header and the slideover menu; plus the 768 header (items 2 and 5).',
+      'Detail panels: Nambi open on desktop, the no-detail variant for Tábořiště Kondor, and the mobile bottom drawer (item 3).',
+      '⌘K, the EN/CS switch using the Czech strings, and the motion switch with every reduced-motion variant from the Motion table.',
+      'The states sheet (item 5) and the one-screen motion spec (item 6).',
+      'The /cv page: screen view and a print preview of page 1 (item 4).',
+    ],
+    specs: [
+      { heading: '### Selected work + detail panel' },
+      { heading: '### /cv page' },
+      { heading: '### Header + mobile nav' },
+      { heading: '## Motion' },
+      { heading: '## Responsive' },
+      { heading: '## Deliverables for Claude Design' },
+    ],
+  },
+  {
+    source: '03-design-maximal-dark.md',
+    out: '03-maximal-dark',
+    title: 'Portfolio design 03 · Maximal dark',
+    part1: [
+      'Tokens and the style tile (Deliverables item 1).',
+      'The six posters, field and mockup only, device screens as labelled placeholders (item 13).',
+      'The home page, desktop 1440×900, dark theme, English, full length, fold marked: header, hero with the Silk shader (the static gradient where WebGL is unavailable), Selected work Fey Cards with their panels closed, More projects, Experience with the magnetic stage, Contact, footer (item 2).',
+      'The signature working on that page: the breath clock driving the name, Silk, live dots and portrait frame; the pointer-reactive role line; the title outline masks; Floating Card tilt; Fey Card hover; the magnetic stage, as in the full-motion column of the Motion table.',
+    ],
+    notNow: [
+      'Desktop light and the theme toggle; mobile 390 in dark and light.',
+      'The Scroll Island and the slideover on mobile.',
+      'The Nambi panel open and the Develit stage frame.',
+      '⌘K, the scrolled header, the EN/CS switch, the motion switch and the reduced-motion column.',
+      'The focus-visible sheet, the /cv page and the motion spec.',
+    ],
+    dropFromPart1: ['## Implementation notes'],
+    done: 'the tokens, the style tile, the six posters and the desktop dark home page with the breath clock and every pointer effect working',
+    part2: [
+      'Desktop light with the theme toggle (Deliverables item 4).',
+      'Mobile 390 in dark and light, with the Scroll Island and the slideover open (items 3, 5 and 8).',
+      'The Nambi card with the panel open (item 6) and the experience stage with the Develit card raised (item 7).',
+      '⌘K open and the header scrolled state (item 9); the EN/CS switch using the Czech strings; the motion switch with every reduced-motion variant.',
+      'The focus-visible sheet in both themes (item 10).',
+      'The /cv page (item 11) and the one-screen motion spec (item 12).',
+    ],
+    specs: [
+      { heading: '### 2. Selected work + detail panel' },
+      { heading: '### 4. Experience' },
+      { heading: '### 7. `/cv` page' },
+      { heading: '### 8. Header and mobile navigation' },
+      { heading: '## Motion' },
+      { heading: '## Responsive' },
+      { heading: '## Deliverables for Claude Design' },
+    ],
+  },
+  {
+    source: '04-design-bento-proof.md',
+    out: '04-bento-proof',
+    title: 'Portfolio design 04 · Bento of proof',
+    part1: [
+      'Tokens and the style tile: both palettes, type, buttons in every state with the vermilion CV button, the motion switch, pills, tile anatomy with hover, focus-within and move-mode states, and the poster system (Deliverables item 1).',
+      'The three featured posters in both compositions, 16:10 and wide 10:3, device screens as labelled placeholders.',
+      'The home page, desktop 1440, dark theme, default tile order, English, full length, the 790 px viewport marked: header, the nine-tile bento hero, Selected work rows with their panels closed, More projects, Experience, Contact with Silk or its static fallback, footer (item 2, the dark 1440 frame).',
+      'The signature working on that page: the proof and Now tiles with values labelled "measured at build", drag-to-swap between same-size tiles with the click and keyboard move mode, reset layout, the load reveals and Variable Text on the name.',
+    ],
+    notNow: [
+      'Light 1440 and the theme toggle.',
+      'The 1024 brick grid, the 768 layout and mobile 390 with the Scroll Island.',
+      'The Nambi panel open on desktop and mobile.',
+      'The states frame, ⌘K, the EN/CS switch, the motion switch and the reduced-motion column.',
+      'The /cv page and the motion spec frame.',
+    ],
+    done: 'the tokens, the style tile, the posters and the desktop dark home page with the working tile swaps and proof tiles',
+    part2: [
+      'Home light 1440 with the theme toggle (Deliverables item 2).',
+      'The 1024 brick grid with the tightest header, the 768 layout, and mobile 390 with the Scroll Island collapsed and expanded (item 2).',
+      'The project panel open: Nambi on desktop and mobile (item 3).',
+      'The states frame: a tile mid-drag with the target outline, move mode with its live-region text, the proof tile with a ○ CWV value, the Copied toast, ⌘K open (item 4).',
+      'The EN/CS switch using the Czech strings, and the motion switch with every reduced-motion variant from the Motion table.',
+      'The /cv page at A4 with its on-screen wrapper, and the motion spec frame (item 5).',
+    ],
+    specs: [
+      { heading: '## Layout system' },
+      { paragraph: '**Header**' },
+      { paragraph: '**Mobile hero' },
+      { paragraph: '**Selected work**' },
+      { paragraph: '**/cv page**' },
+      { paragraph: '**Mobile navigation**' },
+      { heading: '## Motion' },
+      { heading: '## Responsive' },
+      { heading: '## Deliverables for Claude Design' },
+    ],
+  },
+]
+
+/** Line range of a section: from its heading to the next heading of the same or higher level. */
+function sectionRange(lines: string[], heading: string, file: string) {
+  const start = lines.findIndex(line => line.startsWith(heading))
+  if (start === -1) throw new Error(`${file}: heading not found: ${heading}`)
+  const level = lines[start]!.match(/^#+/)![0].length
+  let end = lines.length
+  for (let index = start + 1; index < lines.length; index++) {
+    const line = lines[index]!
+    const depth = line.match(/^(#+)\s/)?.[1]?.length
+    if ((depth && depth <= level) || line.startsWith('---') || line.startsWith('<!--')) {
+      end = index
+      break
+    }
+  }
+  return [start, end] as const
+}
+
+function extract(text: string, selector: Selector, file: string) {
+  if ('heading' in selector) {
+    const lines = text.split('\n')
+    const [start, end] = sectionRange(lines, selector.heading, file)
+    return lines.slice(start, end).join('\n').trim()
+  }
+  const found = text.split(/\n{2,}/).find(chunk => chunk.startsWith(selector.paragraph))
+  if (!found) throw new Error(`${file}: paragraph not found: ${selector.paragraph}`)
+  return found.trim()
+}
+
+const tidy = (text: string) => text
+  .split('\n')
+  .filter(line => !line.startsWith('<!-- content:'))
+  .join('\n')
+  .replace(/(?:^---\n+){2,}/gm, '---\n\n')
+  .replace(/\n{3,}/g, '\n\n')
+  .trim()
+const demote = (chunk: string) => chunk.replace(/^(#+) /gm, '#$1 ')
+const numbered = (items: string[]) => items.map((item, index) => `${index + 1}. ${item}`).join('\n')
+const bulleted = (items: string[]) => items.map(item => `- ${item}`).join('\n')
+const GENERATED = '<!-- generated by `pnpm brief:content` from the brief and the site data; edit the source brief, not this file -->'
+
+const sendDir = `${briefsDir}send/`
+mkdirSync(sendDir, { recursive: true })
+for (const split of splits) {
+  const brief = readFileSync(briefsDir + split.source, 'utf8')
+  let body = brief
+  for (const heading of split.dropFromPart1 ?? []) {
+    const lines = body.split('\n')
+    const [start, end] = sectionRange(lines, heading, split.source)
+    body = [...lines.slice(0, start), ...lines.slice(end)].join('\n')
+  }
+
+  const part1 = `${GENERATED}
+
+# ${split.title}: part 1 of 2
+
+**How this brief runs.** It comes in two messages in this one project. This first message carries the complete brief below. Read all of it, because both parts share one design system and one page. Build only the part 1 scope now. My next message is part 2 and builds everything under "Not now". Do not start that work, not even partially. The brief's Deliverables section lists the frames of both parts; the scope below says which ones belong to part 1.
+
+## Part 1 scope: build now
+
+${numbered(split.part1)}
+
+## Not now: part 2 builds these
+
+${bulleted(split.notNow)}
+
+## How to work
+
+- Work in small steps: the tokens and the style tile first, then the posters, then the page one section per edit. Never write a whole file in one step; create it small and extend it.
+- Facts and copy come only from the Content and images section at the end of the brief. Image slots stay labelled placeholders.
+- When the part 1 scope is done, stop. Reply with a short list of what exists, in which files, and anything left unfinished.
+
+---
+
+${tidy(body)}
+
+---
+
+**Reminder:** build only the part 1 scope from the top of this message, then stop and wait for part 2.
+`
+
+  const specs = split.specs.map(selector => demote(extract(brief, selector, split.source))).join('\n\n')
+  const part2 = `${GENERATED}
+
+# ${split.title}: part 2 of 2
+
+**This is part 2 of 2, in the same project.** The complete brief is in my first message, and part 1 built ${split.done}. Keep part 1 as it is and extend the same files. Change it only where the new work needs it, and say what you changed. The specs this part needs are repeated below, verbatim from the brief, followed by the Content and images section.
+
+## Build now
+
+${numbered(split.part2)}
+
+## How to work
+
+- Work in small steps: one view, theme or state per edit. Never rewrite a whole file in one step.
+- Facts and copy come only from the Content and images section below. Image slots stay labelled placeholders.
+- When everything is done, reply with every item of the brief's Deliverables section and the file and frame where it lives, so nothing is missing.
+
+## Specs for this part, verbatim from the brief
+
+${specs}
+
+---
+
+${tidy(block)}
+`
+
+  writeFileSync(`${sendDir}${split.out}-part-1.md`, part1)
+  writeFileSync(`${sendDir}${split.out}-part-2.md`, part2)
+  console.log(`send/${split.out}-part-1.md and -part-2.md written`)
+}

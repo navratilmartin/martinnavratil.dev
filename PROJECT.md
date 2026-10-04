@@ -106,6 +106,14 @@ Every image slot (portrait, screenshots, device screens) is drawn as an empty la
 come in code. The generated section is now called **Content and images**; `design-prompts/attach/` keeps the
 site screenshots for the build.
 
+**Two-part runs, 2026-10-04.** In Claude Design only brief 02 completed; 01, 03 and 04 stalled mid-build every time,
+even after a day. The longest brief was the one that worked, so length is not the cause; the failing three ask
+for a whole interactive site in one run (deck physics, WebGL shader, drag-swap bento, plus /cv, i18n, themes,
+states). `pnpm brief:content` now also writes `design-prompts/send/<brief>-part-1.md` and `-part-2.md` for 01,
+03 and 04: part 1 = complete brief + scope limited to tokens, style tile, posters and the desktop dark home page
+with its signature; part 2 = the remaining views, states, motion spec and /cv, with its specs repeated verbatim
+and the content section. Both tell Claude Design to build in small edits. Brief 02 stays a single message.
+
 ## 3. Decisions log
 
 | Date | Decision | Why |
@@ -134,6 +142,7 @@ site screenshots for the build.
 | 2026-10-03 | Send all four briefs; every brief carries a generated Content and attachments section (`pnpm brief:content`) | Martin's choice; Claude Design cannot read the repo, so the copy must travel inside the brief |
 | 2026-10-03 | A volunteering start date is optional in the data model and is never guessed | The earlier placeholder date would have leaked into the briefs as fact |
 | 2026-10-03 | Claude Design gets no images; image slots are labelled placeholders, real images only in code | Martin: the designs are for his review, the photos matter in the code |
+| 2026-10-04 | Briefs 01, 03, 04 go to Claude Design in two parts; 02 stays whole | They stalled in one run; part 1 keeps the full context, part 2 finishes the rest |
 
 ## 4. Open questions — rest of the interview (recommended answers in bold)
 
@@ -384,6 +393,7 @@ the OG template · `app/composables/useMotionPreference.ts` + `app/plugins/motio
 
 - 2026-10-02 — Interview started (Q1–Q3 decided). Two research passes completed (§5). Martin shared two
   hero references (§2) and set the process order (§0). This file created.
+- 2026-10-04 — Briefs 01, 03 and 04 split into two-part send files after stalling in Claude Design (§2.1).
 - 2026-10-03 — All four briefs made self-contained and verified (§2.1 correction); attachments prepared.
 - 2026-10-02 — Brief 02 revised with the grafts and verified (§2.1). Ready to run 01 and 02 in Claude Design.
 - 2026-10-02 — Four design briefs written, critiqued and ranked (§2.1, `design-prompts/`).

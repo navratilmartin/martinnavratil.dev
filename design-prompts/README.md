@@ -28,7 +28,7 @@ Four revised briefs for Claude Design, all bound by the hard constraints in PROJ
 
 ## 3. How to send a brief to Claude Design
 
-Run this first whenever the site's content has changed, so the briefs carry the current copy:
+Run this first whenever the site's content or a brief has changed. It refreshes the content section of every brief and rebuilds the send files in `design-prompts/send/`:
 
 ```bash
 pnpm brief:content
@@ -36,13 +36,17 @@ pnpm brief:content
 
 Nothing is attached. The designs are for Martin's review only, so every image slot stays an empty frame with a label: the portrait, the screenshots and the device screens. The real images are added in code; `design-prompts/attach/`, which git ignores, keeps the site screenshots for that step.
 
-For each brief, one Claude Design project:
+**Brief 02** went through whole: one project, `02-design-quiet-signature.md` as the only message. It stays as it is.
 
-1. Create a new Claude Design project named after the brief, for example "Portfolio 01 Hybrid hero".
-2. Copy the whole brief file to the clipboard (`pbcopy < design-prompts/01-design-hybrid-hero.md`), paste it as the first message and send. The brief already lists the frames to deliver and asks for working animations.
-3. If a frame from the brief's Deliverables list is missing, ask for it by its number.
-4. Review the result against the checklist below and fix contrast or Czech overflow inside Claude Design.
-5. When one prototype wins, send its Claude Design link to Claude Code: it is imported with design sync into `design/` as the visual source of truth, tokens move into `app/assets/css/main.css`, and deviations are logged in PROJECT.md.
+**Briefs 01, 03 and 04** stalled in one run, so each goes in two messages to the same project. Part 1 carries the complete brief but builds only the core: tokens, style tile, posters and the desktop dark home page with its signature working. Part 2 builds the rest: light theme, mobile, open panels, states, the motion spec and /cv. It repeats its specs verbatim and the content section, so it still makes sense if Claude Design has compacted the first message.
+
+1. Create a new Claude Design project, for example "Portfolio 01 Hybrid hero".
+2. Send `send/01-hybrid-hero-part-1.md` with the line: "Part 1 of 2 of my portfolio brief. Read the whole file, then build only its part 1 scope."
+3. Wait until Claude Design finishes and replies with its summary of part 1.
+4. In the same project, send `send/01-hybrid-hero-part-2.md` with the line: "Part 2 of 2. Continue in this project and build its scope."
+5. Do the same for 03 and 04 with their own files, one project each.
+6. Review each result against the checklist below and fix contrast or Czech overflow inside Claude Design.
+7. When one prototype wins, send its Claude Design link to Claude Code: it is imported with design sync into `design/` as the visual source of truth, tokens move into `app/assets/css/main.css`, and deviations are logged in PROJECT.md.
 
 ### Review checklist
 
